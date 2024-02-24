@@ -1,6 +1,6 @@
-set up app
+How to setup application.
 
-
-1. php artisan migrate
-2. php artisan db:seed
-3. done
+### Do this one 👀👀 
+    - php artisan migrate
+    - php artisan db:seed
+    - done
