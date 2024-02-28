@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
-    public function index()
+    public function home()
     {
-        $data = [
-            'message' => 'Hello laravel'
-        ];
-        return view('client.home', $data);
+        $data = 'Hello Test';
+        return redirect('dashboard')->with('message', $data);
     }
 }

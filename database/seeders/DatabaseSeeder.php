@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -40,5 +41,12 @@ class DatabaseSeeder extends Seeder
                 'customer_id' => $i + 1
             ]);
         }
+
+        DB::table('users')->insert([
+            'fullname' => 'admin',
+            'email' => 'admin@softui.com',
+            'password' => Hash::make('12345'),
+            // 'password' => '12345',
+        ]);
     }
 }

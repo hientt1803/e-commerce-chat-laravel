@@ -12,7 +12,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $data['categories'] = Categories::orderBy('status', 'desc')->orderBy('cat_id', 'desc')->paginate(5);
+        return view('admin.laravel-navigation.categories.index', $data);
     }
 
     /**
@@ -20,7 +21,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.laravel-navigation.categories.add-new');
     }
 
     /**
@@ -28,7 +29,21 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|string|max:255',
+        ]);
+
+        // if (!$request->category_name) {
+        //     return redirect()->back()->withErrors(['message' => 'Vui lòng nhập vào tên danh mục']);
+        // }
+
+        $category = new Categories;
+        $category->category_name = $request->category_name;
+        $category->status = true;
+
+        $category->save();
+
+        return redirect()->route('categories-management')->with('success', 'Category created successfully!');
     }
 
     /**
@@ -36,30 +51,50 @@ class CategoriesController extends Controller
      */
     public function show(Categories $categories)
     {
-        //
+        return view('admin.categories.update');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categories $categories)
+    public function edit($id)
     {
-        //
+        $data['category'] = Categories::find($id);
+        // dd($data);
+        return view('admin.laravel-navigation.categories.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'category_name' => 'required|string|max:255',
+        ]);
+
+        $category = Categories::find($id);
+
+        $category->category_name = $request->category_name;
+        $category->status = true;
+
+        $category->update();
+
+        // dd('what?');
+
+        return redirect()->route('categories-management')->with('success', 'Category update successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categories $categories)
+    public function destroy($id)
     {
-        //
+        $category = Categories::find($id);
+
+        $category->status = !$category->status;
+
+        $category->update();
+        return redirect()->route('categories-management')->with('success', 'Category deleted successfully!');
     }
 }
