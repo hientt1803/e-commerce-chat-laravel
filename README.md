@@ -1,6 +1,7 @@
 How to setup application.
 
 ### Do this one 👀👀 
-    - php artisan migrate
+    - php artisan migrate:fresh
     - php artisan db:seed
-    - done
+    - run application: php artisan serve
+    - login with a default account and password. 
