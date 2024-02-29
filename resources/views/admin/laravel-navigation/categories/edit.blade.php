@@ -42,7 +42,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Update Category</button>
+                        <button type="submit" class="btn btn-outline-primary">Update Category</button>
                     </form>
                 </div>
             </div>

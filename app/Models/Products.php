@@ -2,12 +2,24 @@
 
 namespace App\Models;
 
+use App\Models\trait\relationship\ProductRelationship;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
 {
     use HasFactory;
+    use ProductRelationship;
+
+    protected $table = 'products';
+
+    protected $primaryKey = "product_id";
+
+    public $timestamps = false;
+
+    protected array $dates = ['create_at', 'update_at'];
+
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +32,8 @@ class Products extends Model
         'quantity',
         'description',
         'image',
-        'status'
+        'status',
+        'create_at'
     ];
 
     /**
@@ -43,4 +56,10 @@ class Products extends Model
         // 'image' => 'datetime',
         // 'password' => 'hashed',
     ];
+
+    public function toArray(): array
+    {
+        $attributes = $this->attributesToArray();
+        return array_merge($attributes, $this->relationsToArray());
+    }
 }

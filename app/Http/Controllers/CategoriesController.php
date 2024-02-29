@@ -14,7 +14,7 @@ class CategoriesController extends Controller
     {
         $data['categories'] = Categories::orderBy('status', 'desc')->orderBy('cat_id', 'desc')->paginate(5);
         return view('admin.laravel-navigation.categories.index', $data);
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.

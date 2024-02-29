@@ -72,12 +72,14 @@ Route::group(['middleware' => 'auth'], function () {
 	// Route::resource('admin/categories-management', CategoriesController::class);
 
 	// ******************* Product route *******************
-	// Get
-	Route::get('admin/products-management', [ProductsController::class, 'index'])->name('products-management');
-
-	// create
-	Route::get('admin/products-management-create', [ProductsController::class, 'create']);
-	Route::post('admin/products-management', [ProductsController::class, 'store']);
+	Route::controller(ProductsController::class)->group(function () {
+		Route::get('admin/products-management', [ProductsController::class, 'index'])->name('products-management');
+		Route::get('admin/products-management-create', [ProductsController::class, 'create']);
+		Route::post('admin/products-management', [ProductsController::class, 'store']);
+		Route::get('admin/products-management-edit/{id}', 'edit')->name('products-management-edit');
+		Route::put('admin/products-management/update/{id}', 'update');
+		Route::delete('admin/products-management/delete/{id}', 'destroy');
+	});
 
 
 	Route::get('admin/customers-management', function () {

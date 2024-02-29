@@ -18,6 +18,8 @@ return new class extends Migration
             // Fk key
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('order_id')->on('orders');
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('product_id')->on('products');
 
             // properties
             $table->integer('quantity');

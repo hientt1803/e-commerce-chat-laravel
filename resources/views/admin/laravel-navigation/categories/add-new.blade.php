@@ -36,7 +36,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Create Category</button>
+                        <button type="submit" class="btn btn-outline-primary">Create Category</button>
                     </form>
                 </div>
             </div>
