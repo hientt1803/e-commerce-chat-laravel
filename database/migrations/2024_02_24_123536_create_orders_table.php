@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('name_receiver');
             $table->string('phone_receiver');
             $table->mediumText('address_receiver');
-            $table->mediumText('notes');
+            $table->mediumText('notes')->nullable();
             $table->double('total_price');
             $table->string('status')->default('đang chờ');
 

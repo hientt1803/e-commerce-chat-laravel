@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Order_detail;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,7 +13,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $data['orders'] = Order::orderBy('create_at', 'desc')->orderByDesc('status')->with('orderDetail.product.categories')->paginate(15);
+        // dd($data);
+        return view('admin.laravel-navigation.orders.index', $data);
     }
 
     /**
@@ -34,9 +37,13 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        // $order = Order::find($id);
+        // $orderDetail = Order_detail::find($order->order_id)->with('product');
+
+        // dd($order, $orderDetail);
+        // redirect()->route('orders-management', compact($order, $orderDetail));
     }
 
     /**
@@ -50,16 +57,29 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $order = Order::find($id);
+
+        // $order->status = 'đang giao';
+        $order->status = 'đã giao';
+
+        $order->update();
+
+        return redirect()->route('orders-management')->with('success', 'orders update successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Order $order)
+    public function destroy($id)
     {
-        //
+        $order = Order::find($id);
+
+        $order->status = 'đã hủy';
+
+        $order->update();
+
+        return redirect()->route('orders-management')->with('success', 'orders deleted successfully!');
     }
 }

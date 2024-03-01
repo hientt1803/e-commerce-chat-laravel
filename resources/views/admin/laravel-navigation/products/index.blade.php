@@ -9,7 +9,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">Các sản phẩm</h5>
+                            <h5 class="mb-0">Sản phẩm</h5>
                         </div>
                         <a href="{{ url('admin/products-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tạo sản phẩm</a>
                     </div>
@@ -66,8 +66,8 @@
                                             <p class="text-xs text-center font-weight-bold mb-0">{{ $product->product_name }}</p>
                                         </div>
                                     </td>
-                                    <td class="d-flex justify-content-center" style="max-width: 350px;">
-                                        <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" class="w-25 h-25 img-responsive">
+                                    <td class="d-flex justify-content-center">
+                                        <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" class="img-responsive avatar avatar-md me-3">
                                     </td>
                                     <td>
                                         <div>
@@ -102,11 +102,15 @@
                                         <span class="text-secondary text-xs font-weight-bold">{{ $product->create_at }}</span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ url('admin/products-management-edit/' . $product->cat_id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
+                                        <a href="{{ url('admin/products-management-edit/' . $product->cat_id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->cat_id }}">
+                                            @if($product->status == 0)
+                                            <i class="fas fa-undo text-secondary cursor-pointer"></i>
+                                            @else
                                             <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            @endif
                                         </span>
 
                                         <!-- Modal -->
@@ -118,14 +122,20 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
+                                                        @if($product->status == 1 )
                                                         Bạn có chắc chắn muốn xóa sản phẩm: {{$product->product_name}}?
+                                                        @else
+                                                        Bạn có chắc chắn muốn khổi phục sản phẩm: {{$product->product_name}}?
+                                                        @endif
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở về</button>
                                                         <form method="POST" action="{{ url('admin/products-management/delete') . '/' . $product->cat_id}}">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Xóa</button>
+                                                            <button type="submit" class="btn btn-danger">
+                                                                {{$product->status == 1 ? 'Xóa sản phẩm':'Khôi phục'}}
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </div>

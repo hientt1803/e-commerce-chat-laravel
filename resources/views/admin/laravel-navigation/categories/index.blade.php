@@ -9,7 +9,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">Các danh mục</h5>
+                            <h5 class="mb-0">Danh mục</h5>
                         </div>
                         <a href="{{ url('admin/categories-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tạo danh mục</a>
                     </div>
@@ -71,7 +71,11 @@
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $category->cat_id }}">
+                                            @if($category->status == 0)
+                                            <i class="fas fa-undo text-secondary cursor-pointer"></i>
+                                            @else
                                             <i class="cursor-pointer fas fa-trash text-secondary"></i>
+                                            @endif
                                         </span>
 
                                         <!-- Modal -->

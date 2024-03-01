@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
@@ -71,21 +73,32 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// ******************* Product route *******************
 	Route::controller(ProductsController::class)->group(function () {
-		Route::get('admin/products-management', [ProductsController::class, 'index'])->name('products-management');
-		Route::get('admin/products-management-create', [ProductsController::class, 'create']);
-		Route::post('admin/products-management', [ProductsController::class, 'store']);
+		Route::get('admin/products-management', 'index')->name('products-management');
+		Route::get('admin/products-management-create', 'create');
+		Route::post('admin/products-management', 'store');
 		Route::get('admin/products-management-edit/{id}', 'edit')->name('products-management-edit');
 		Route::put('admin/products-management/update/{id}', 'update');
 		Route::delete('admin/products-management/delete/{id}', 'destroy');
 	});
 
-	Route::get('admin/customers-management', function () {
-		return view('admin/laravel-navigation/customers-management');
-	})->name('customers-management');
 
-	Route::get('admin/orders-management', function () {
-		return view('admin/laravel-navigation/orders-management');
-	})->name('orders-management');
+	// ******************* Order route *******************
+	Route::controller(OrderController::class)->group(function () {
+		Route::get('admin/orders-management', 'index')->name('orders-management');
+		// Route::post('admin/orders-management', [OrderController::class, 'store']);
+		// Route::get('admin/orders-management-edit/{id}', 'edit')->name('orders-management-edit');
+		Route::put('admin/orders-management/update/{id}', 'update');
+		Route::delete('admin/orders-management/delete/{id}', 'destroy');
+	});
+
+
+	// Route::get('admin/customers-management', function () {
+	// 	return view('admin/laravel-navigation/customers-management');
+	// })->name('customers-management');
+
+	// Route::get('admin/orders-management', function () {
+	// 	return view('admin/laravel-navigation/orders-management');
+	// })->name('orders-management');
 
 	Route::get('admin/tables', function () {
 		return view('admin/tables');

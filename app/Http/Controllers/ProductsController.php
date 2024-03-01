@@ -14,6 +14,14 @@ class ProductsController extends Controller
     public function index()
     {
         $data['products'] = Products::orderBy('status', 'desc')->orderBy('product_id', 'desc')->with('categories')->paginate(15);
+
+        // $data['products'] = Products::orderBy('status', 'desc')
+        //                         ->orderBy('product_id', 'desc')
+        //                         ->with(['categories' => function ($query) {
+        //                             $query->where('status', 1);
+        //                         }])
+        //                         ->paginate(15);
+
         return view('admin.laravel-navigation.products.index', $data);
     }
 
@@ -22,7 +30,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        $data['categories'] = Categories::all();
+        $data['categories'] = Categories::where('status', 1)->get();
         // dd($data);
         return view('admin.laravel-navigation.products.add-new', $data);
     }

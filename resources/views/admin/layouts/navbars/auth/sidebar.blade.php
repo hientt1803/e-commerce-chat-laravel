@@ -172,7 +172,7 @@
                     </g>
                   </g>
                 </g>
-              </g>
+              </g> 
             </svg>
           </div>
           <span class="nav-link-text ms-1">RTL</span>
