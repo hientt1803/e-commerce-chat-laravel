@@ -50,7 +50,7 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">User Profile</span>
+          <span class="nav-link-text ms-1">Profile</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -58,7 +58,7 @@
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center text-dark {{ (Request::is('admin/user-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
           </div>
-          <span class="nav-link-text ms-1">User Management</span>
+          <span class="nav-link-text ms-1">Quản lý nhân viên</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -66,7 +66,7 @@
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i style="font-size: 1rem;" class="fas fa-stream ps-2 pe-2 text-center text-dark {{ (Request::is('admin/categories-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
           </div>
-          <span class="nav-link-text ms-1">Categories Management</span>
+          <span class="nav-link-text ms-1">Quản lý danh mục</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -74,7 +74,7 @@
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i style="font-size: 1rem;" class="fas fa-boxes ps-2 pe-2 text-center text-dark {{ (Request::is('admin/products-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
           </div>
-          <span class="nav-link-text ms-1">Products Management</span>
+          <span class="nav-link-text ms-1">Quản lý sản phẩm</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -82,7 +82,7 @@
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i style="font-size: 1rem;" class="fas fa-users ps-2 pe-2 text-center text-dark {{ (Request::is('admin/customers-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
           </div>
-          <span class="nav-link-text ms-1">Customers Management</span>
+          <span class="nav-link-text ms-1">Quản lý khách hàng</span>
         </a>
       </li>
       <li class="nav-item pb-2">
@@ -90,7 +90,7 @@
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <i style="font-size: 1rem;" class="fas fa-dolly-flatbed ps-2 pe-2 text-center text-dark {{ (Request::is('admin/orders-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
           </div>
-          <span class="nav-link-text ms-1">Orders Management</span>
+          <span class="nav-link-text ms-1">Quản lý đơn hàng</span>
         </a>
       </li>
       <li class="nav-item mt-2">

@@ -9,9 +9,9 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">Create new Products</h5>
+                            <h5 class="mb-0">Tạo mới sản phẩm</h5>
                         </div>
-                        <a href="{{ url('admin/products-management') }}" class="btn bg-gradient-primary btn-sm mb-0 d-flex align-items-center" type="button"><i class="fas fa-arrow-left"></i>&nbsp; Comeback</a>
+                        <a href="{{ url('admin/products-management') }}" class="btn bg-gradient-primary btn-sm mb-0 d-flex align-items-center" type="button"><i class="fas fa-arrow-left"></i>&nbsp; Trở về</a>
                     </div>
                 </div>
                 <div class="card-body px-4 pt-0 pb-2">
@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="product_name" class="form-control-label">Product Name</label>
+                                    <label for="product_name" class="form-control-label">Tên sản phẩm</label>
                                     <div class="@error('user.name')border border-danger rounded-3 @enderror">
                                         <input class="form-control" type="text" placeholder="product name" id="product_name" name="product_name">
                                         @error('product_name')
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="price" class="form-control-label">Price (VNĐ)</label>
+                                    <label for="price" class="form-control-label">Giá (VNĐ)</label>
                                     <input class="form-control" type="number" value="00" id="price" name="price">
                                     @error('price')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="cat_id">Categories</label>
+                                    <label for="cat_id">Danh mục</label>
                                     <select class="form-control" id="cat_id" name="cat_id">
                                         @foreach($categories as $index => $category)
                                         <option value="{{$category->cat_id}}">
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="quantity" class="form-control-label">Quantity</label>
+                                    <label for="quantity" class="form-control-label">Số lượng</label>
                                     <input class="form-control" type="number" placeholder="00" id="quantity" name="quantity">
                                     @error('quantity')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="image" class="form-control-label">Product Image</label>
+                                    <label for="image" class="form-control-label">Hình ảnh</label>
                                     <div class="@error('user.name')border border-danger rounded-3 @enderror">
                                         <input class="form-control" type="file" placeholder="Choose product image" id="image" name="image">
                                         @error('image')
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="description">Description</label>
+                                    <label for="description">Mô tả</label>
                                     <textarea class="form-control" id="description" rows="3" name="description"></textarea>
                                     @error('description')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-outline-primary">Create Products</button>
+                        <button type="submit" class="btn btn-outline-primary">Tạo sản phẩm mới</button>
                     </form>
                 </div>
             </div>

@@ -9,9 +9,9 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">All Products</h5>
+                            <h5 class="mb-0">Các sản phẩm</h5>
                         </div>
-                        <a href="{{ url('admin/products-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Categories</a>
+                        <a href="{{ url('admin/products-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tạo sản phẩm</a>
                     </div>
                 </div>
                 <div class="ms-4">
@@ -30,28 +30,28 @@
                                         ID
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Product Name
+                                        Tên sản phẩm
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Image
+                                        Hình ảnh
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        price
+                                        Giá
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Quantity
+                                        Số lượng
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        description
+                                        Mô tả
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Categories
+                                        Danh mục
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Creation Date
+                                        Ngày tạo
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action
+                                        Thao tác
                                     </th>
                                 </tr>
                             </thead>
@@ -114,18 +114,18 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                                        <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to delete Product: {{$product->product_name}}?
+                                                        Bạn có chắc chắn muốn xóa sản phẩm: {{$product->product_name}}?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                         <form method="POST" action="{{ url('admin/products-management/delete') . '/' . $product->cat_id}}">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                                         </form>
                                                     </div>
                                                 </div>

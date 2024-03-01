@@ -8,7 +8,6 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
-use App\Models\Categories;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,7 +68,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::put('admin/categories-management/update/{id}', 'update');
 		Route::delete('admin/categories-management/delete/{id}', 'destroy');
 	});
-	// Route::resource('admin/categories-management', CategoriesController::class);
 
 	// ******************* Product route *******************
 	Route::controller(ProductsController::class)->group(function () {
@@ -80,7 +78,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::put('admin/products-management/update/{id}', 'update');
 		Route::delete('admin/products-management/delete/{id}', 'destroy');
 	});
-
 
 	Route::get('admin/customers-management', function () {
 		return view('admin/laravel-navigation/customers-management');
@@ -93,18 +90,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('admin/tables', function () {
 		return view('admin/tables');
 	})->name('tables');
-
-	// Route::get('virtual-reality', function () {
-	// 	return view('virtual-reality');
-	// })->name('virtual-reality');
-
-	// Route::get('static-sign-in', function () {
-	// 	return view('static-sign-in');
-	// })->name('sign-in');
-
-	// Route::get('static-sign-up', function () {
-	// 	return view('static-sign-up');
-	// })->name('sign-up');
 
 	Route::get('/logout', [SessionsController::class, 'destroy']);
 	Route::get('/user-profile', [InfoUserController::class, 'create']);

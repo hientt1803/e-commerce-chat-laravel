@@ -25,12 +25,12 @@ return new class extends Migration
 
             // properties
             $table->string('fullname');
-            $table->string('email')->unique();
+            $table->string('email')->unique(); 
             $table->string('password');
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->boolean('gender')->default(true);
-            $table->boolean('role')->default(false); 
+            $table->string('role')->default('user'); 
  
             // Log
             $table->timestamp('create_at')->comment('Thời điểm tạo')->useCurrent();

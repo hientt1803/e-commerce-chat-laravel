@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             'fullname' => 'admin',
             'email' => 'admin@softui.com',
             'password' => Hash::make('12345'),
-            // 'password' => '12345',
+            'role' => 'admin',
         ]);
     }
 }

@@ -9,9 +9,9 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">Create new Categories</h5>
+                            <h5 class="mb-0">Tạo mới danh mục</h5>
                         </div>
-                        <a href="{{ url('admin/categories-management') }}" class="btn bg-gradient-primary btn-sm mb-0 d-flex align-items-center" type="button"><i class="fas fa-arrow-left"></i>&nbsp; Comeback</a>
+                        <a href="{{ url('admin/categories-management') }}" class="btn bg-gradient-primary btn-sm mb-0 d-flex align-items-center" type="button"><i class="fas fa-arrow-left"></i>&nbsp; Trở về</a>
                     </div>
                 </div>
                 <div class="card-body px-4 pt-0 pb-2">
@@ -26,7 +26,7 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="category_name" class="form-control-label">Category Name</label>
+                                <label for="category_name" class="form-control-label">Tên danh mục</label>
                                 <div class="@error('user.name')border border-danger rounded-3 @enderror">
                                     <input class="form-control" type="text" placeholder="category name" id="category_name" name="category_name" required>
                                     @error('category_name')
@@ -36,7 +36,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-outline-primary">Create Category</button>
+                        <button type="submit" class="btn btn-outline-primary">Tạo danh mục</button>
                     </form>
                 </div>
             </div>
