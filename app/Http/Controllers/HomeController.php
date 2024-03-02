@@ -9,6 +9,6 @@ class HomeController extends Controller
     public function home()
     {
         $data = 'Hello Test';
-        return redirect('dashboard')->with('message', $data);
+        return redirect('/')->with('message', $data);
     }
 }
