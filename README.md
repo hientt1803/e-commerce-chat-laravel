@@ -1,6 +1,7 @@
 How to setup application.
 
 ### Do this one 👀👀 
+    - composer global require laravel/installer
     - composer install
     - php artisan key:generate
     - php artisan migrate:fresh
