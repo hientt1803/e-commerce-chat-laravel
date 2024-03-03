@@ -2,6 +2,13 @@
 
 @section('content')
 
+<style>
+    .disabled-button {
+        pointer-events: none;
+        opacity: 0.6;
+    }
+</style>
+
 <div>
     <div class="row">
         <div class="col-12">
@@ -9,18 +16,20 @@
                 <div class="card-header pb-0">
                     <div class="d-flex flex-row justify-content-between">
                         <div>
-                            <h5 class="mb-0">Toàn bộ các nhân viên</h5>
+                            <h5 class="mb-0">Nhân viên</h5>
                         </div>
-                        <a href="{{ url('admin/products-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Categories</a>
+                        <a href="{{ url('admin/users-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tạo nhân viên</a>
                     </div>
                 </div>
-                <div class="ms-4">
-                    @if (session('success'))
-                    <div class="text-success font-weight-bolder">
-                        {{ session('success') }}
-                    </div>
-                    @endif
+                @if(session('success'))
+                <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
+                    <span class="alert-text text-white">
+                        {{ session('success') }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="fa fa-close" aria-hidden="true"></i>
+                    </button>
                 </div>
+                @endif
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
@@ -30,102 +39,102 @@
                                         ID
                                     </th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                        Product Name
+                                        Họ và tên
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                        Hình ảnh
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Image
+                                        Email
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        price
+                                        Mật khẩu
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Quantity
+                                        Địa chỉ
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        description
+                                        SĐT
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Categories
+                                        Giới tính
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Creation Date
+                                        Ngày tạo
                                     </th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Action
+                                        Thao tác
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($products as $index => $product)
+                                @foreach($users as $index => $user)
                                 <tr>
                                     <td class="ps-4">
                                         <p class="text-xs font-weight-bold mb-0">{{ $index + 1 }}</p>
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $product->product_name }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $user->fullname }}</p>
                                         </div>
                                     </td>
-                                    <td class="d-flex justify-content-center" style="max-width: 350px;">
-                                        <img src="{{ asset('storage/'.$product->image) }}" alt="Product Image" class="w-25 h-25 img-responsive">
+                                    <td class="d-flex justify-content-center">
+                                        <img src="{{ asset('storage/'.$user->image) }}" alt="user Image" class="img-responsive avatar avatar-md me-3">
+                                        <!-- {{$user->image}} -->
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $product->price }}</p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $product->quantity }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $user->email }}</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $product->description }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0 text-truncate" style="max-width: 100px;">{{ $user->password }}</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $product->categories->category_name }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $user->address }}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $user->phone }}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $user->gender == 1 ? 'Nam' : 'Nữ' }}</p>
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <p class="text-xs font-weight-bold mb-0">
-                                            @if($product->status == 1)
-                                            <span class="badge bg-primary">Đang hoạt động</span>
-                                            @else
-                                            <span class="badge bg-warning text-dark">Vô hiệu hóa</span>
-                                            @endif
-                                        </p>
+                                        <span class="text-secondary text-xs font-weight-bold">{{ $user->create_at }}</span>
                                     </td>
                                     <td class="text-center">
-                                        <span class="text-secondary text-xs font-weight-bold">{{ $product->create_at }}</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="{{ url('admin/products-management-edit/' . $product->cat_id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
+                                        <a href="{{ url('admin/users-management-edit/' . $user->user_id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit user">
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
-                                        <span type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->cat_id }}">
+                                        <span type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->user_id }}" class="{{ $user->role == 'admin' ? 'disabled-button' : '' }}">
                                             <i class="cursor-pointer fas fa-trash text-secondary"></i>
                                         </span>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="deleteModal{{ $product->cat_id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteModal{{ $user->user_id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+                                                        <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to delete Product: {{$product->product_name}}?
+                                                        Bạn có chắc chắn muốn xóa nhân viên: {{$user->fullname}}?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <form method="POST" action="{{ url('admin/products-management/delete') . '/' . $product->cat_id}}">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Trở về</button>
+                                                        <form method="POST" action="{{ url('admin/users-management/delete') . '/' . $user->user_id}}">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-danger">Xóa nhân viên</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -137,7 +146,7 @@
                             </tbody>
                         </table>
                         <div class="float-right ml-4 mt-5">
-                            {{ $products->links() }}
+                            {{ $users->links() }}
                         </div>
                     </div>
                 </div>

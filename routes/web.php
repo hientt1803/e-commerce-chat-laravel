@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,10 +53,6 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('admin.billing');
 	})->name('billing');
 
-	Route::get('admin/profile', function () {
-		return view('admin.laravel-navigation.user-profile');
-	})->name('profile');
-
 	Route::get('admin/user-management', function () {
 		return view('admin.laravel-navigation.user-management');
 	})->name('user-management');
@@ -81,7 +77,6 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('admin/products-management/delete/{id}', 'destroy');
 	});
 
-
 	// ******************* Order route *******************
 	Route::controller(OrderController::class)->group(function () {
 		Route::get('admin/orders-management', 'index')->name('orders-management');
@@ -90,6 +85,32 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::put('admin/orders-management/update/{id}', 'update');
 		Route::delete('admin/orders-management/delete/{id}', 'destroy');
 	});
+
+	// ******************* User route *******************
+	Route::controller(UsersController::class)->group(function () {
+		Route::get('admin/users-management', 'index')->name('users-management');
+		Route::get('admin/users-management-create', 'create');
+		Route::post('admin/users-management', 'store');
+		Route::get('admin/users-management-edit/{id}', 'edit');
+		Route::put('admin/users-management/update/{id}', 'update');
+		Route::delete('admin/users-management/delete/{id}', 'destroy');
+	});
+
+	// ******************* Profile route *******************
+	Route::get('admin/user-profile', function () {
+		return view('admin.laravel-navigation.user-profile');
+	})->name('user-profile');
+	Route::post('admin/user-profile', [InfoUserController::class, 'store']);
+
+	// ******************* Conversation route *******************
+	// Route::controller(UsersController::class)->group(function () {
+	// 	Route::get('admin/users-management', 'index')->name('users-management');
+	// 	Route::get('admin/users-management-create', 'create');
+	// 	Route::post('admin/users-management', 'store');
+	// 	Route::get('admin/users-management-edit/{id}', 'edit');
+	// 	Route::put('admin/users-management/update/{id}', 'update');
+	// 	Route::delete('admin/users-management/delete/{id}', 'destroy');
+	// });
 
 
 	// Route::get('admin/customers-management', function () {
@@ -105,10 +126,9 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('tables');
 
 	Route::get('/logout', [SessionsController::class, 'destroy']);
-	Route::get('/user-profile', [InfoUserController::class, 'create']);
-	Route::post('/user-profile', [InfoUserController::class, 'store']);
+	// Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::get('/login', function () {
-		return view('dashboard');
+		return view('/admin/dashboard');
 	})->name('sign-up');
 });
 

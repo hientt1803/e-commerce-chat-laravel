@@ -14,13 +14,15 @@
                         <a href="{{ url('admin/products-management-create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; Tạo sản phẩm</a>
                     </div>
                 </div>
-                <div class="ms-4">
-                    @if (session('success'))
-                    <div class="text-success font-weight-bolder">
-                        {{ session('success') }}
-                    </div>
-                    @endif
+                @if(session('success'))
+                <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
+                    <span class="alert-text text-white">
+                        {{ session('success') }}</span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                        <i class="fa fa-close" aria-hidden="true"></i>
+                    </button>
                 </div>
+                @endif
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
@@ -81,7 +83,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $product->description }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0 text-truncate" style="max-width: 100px;">{{ $product->description }}</p>
                                         </div>
                                     </td>
                                     <td>

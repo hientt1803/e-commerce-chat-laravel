@@ -31,7 +31,6 @@ class ProductsController extends Controller
     public function create()
     {
         $data['categories'] = Categories::where('status', 1)->get();
-        // dd($data);
         return view('admin.laravel-navigation.products.add-new', $data);
     }
 

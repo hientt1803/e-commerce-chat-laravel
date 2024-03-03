@@ -26,14 +26,14 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Dashboard</span>
+          <span class="nav-link-text ms-1">Thống kê</span>
         </a>
       </li>
       <li class="nav-item mt-2">
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Laravel Admin</h6>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ (Request::is('admin/profile') ? 'active' : '') }} " href="{{ url('admin/profile') }}">
+        <a class="nav-link {{ (Request::is('admin/user-profile') ? 'active' : '') }} " href="{{ url('admin/user-profile') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
             <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <title>customer-support</title>
@@ -50,13 +50,13 @@
               </g>
             </svg>
           </div>
-          <span class="nav-link-text ms-1">Profile</span>
+          <span class="nav-link-text ms-1">Thông tin cá nhân</span>
         </a>
       </li>
       <li class="nav-item pb-2">
-        <a class="nav-link {{ (Request::is('admin/user-management') ? 'active' : '') }}" href="{{ url('admin/user-management') }}">
+        <a class="nav-link {{ (Request::is('admin/users-management') ? 'active' : '') }}" href="{{ url('admin/users-management') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
-            <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center text-dark {{ (Request::is('admin/user-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+            <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center text-dark {{ (Request::is('admin/users-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
           </div>
           <span class="nav-link-text ms-1">Quản lý nhân viên</span>
         </a>
@@ -93,7 +93,15 @@
           <span class="nav-link-text ms-1">Quản lý đơn hàng</span>
         </a>
       </li>
-      <li class="nav-item mt-2">
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('admin/conversation-management') ? 'active' : '') }}" href="{{ url('admin/conversation-management') }}">
+          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i style="font-size: 1rem;" class="fas fa-dolly-flatbed ps-2 pe-2 text-center text-dark {{ (Request::is('admin/conversation-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+          </div>
+          <span class="nav-link-text ms-1">Quản lý hội thoại</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item mt-2">
         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Example pages</h6>
       </li>
       <li class="nav-item">
@@ -135,7 +143,7 @@
           </div>
           <span class="nav-link-text ms-1">Billing</span>
         </a>
-      </li>
+      </li> -->
       <!-- <li class="nav-item">
         <a class="nav-link {{ (Request::is('virtual-reality') ? 'active' : '') }}" href="{{ url('virtual-reality') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
