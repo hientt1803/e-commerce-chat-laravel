@@ -1,6 +1,8 @@
 How to setup application.
 
 ### Do this one 👀👀 
+    - composer install
+    - php artisan key:generate
     - php artisan migrate:fresh
     - php artisan db:seed
     - run application: php artisan serve
