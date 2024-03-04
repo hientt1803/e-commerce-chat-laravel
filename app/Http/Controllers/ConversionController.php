@@ -12,7 +12,8 @@ class ConversionController extends Controller
      */
     public function index()
     {
-        //
+        $data['conversions'] = Conversion::orderBy('status', 'desc')->orderBy('cvs_id', 'desc')->with('user')->with('customer')->paginate(10);
+        return view('admin.laravel-navigation.conversation.index', $data);
     }
 
     /**
@@ -34,9 +35,10 @@ class ConversionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Conversion $conversion)
+    public function show($id)
     {
-        //
+        $data['conversions'] = Conversion::orderBy('status', 'desc')->orderBy('cvs_id', 'desc')->with('user')->with('customer')->paginate(10);
+        return view('admin.laravel-navigation.conversation.inbox', $data);
     }
 
     /**

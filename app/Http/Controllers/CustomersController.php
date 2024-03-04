@@ -11,7 +11,7 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        $data['customers'] = Customers::orderBy('status', 'desc')->orderBy('customer_id', 'desc')->paginate(5);
+        $data['customers'] = Customers::orderBy('status', 'desc')->orderBy('customer_id', 'desc')->paginate(10);
         return view('admin.laravel-navigation.customers.index', $data);
     } 
 

@@ -13,7 +13,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $data['products'] = Products::orderBy('status', 'desc')->orderBy('product_id', 'desc')->with('categories')->paginate(15);
+        $data['products'] = Products::orderBy('status', 'desc')->orderBy('product_id', 'desc')->with('categories')->paginate(10);
 
         // $data['products'] = Products::orderBy('status', 'desc')
         //                         ->orderBy('product_id', 'desc')

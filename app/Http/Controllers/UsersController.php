@@ -13,7 +13,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $data['users'] = User::orderBy('role', 'desc')->paginate(15);
+        $data['users'] = User::orderBy('role', 'desc')->paginate(10);
         return view('admin.laravel-navigation.users.index', $data);
     }
 

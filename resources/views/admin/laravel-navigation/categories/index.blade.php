@@ -107,7 +107,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="float-right ms-auto ps-auto mt-5">
+                        <div class="float-end ms-auto ps-auto mt-5">
                             {{ $categories->links() }}
                         </div>
                     </div>

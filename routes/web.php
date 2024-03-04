@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\OrderController;
@@ -114,14 +115,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('admin/user-profile', [InfoUserController::class, 'store']);
 
 	// ******************* Conversation route *******************
-	// Route::controller(UsersController::class)->group(function () {
-	// 	Route::get('admin/users-management', 'index')->name('users-management');
-	// 	Route::get('admin/users-management-create', 'create');
-	// 	Route::post('admin/users-management', 'store');
-	// 	Route::get('admin/users-management-edit/{id}', 'edit');
-	// 	Route::put('admin/users-management/update/{id}', 'update');
-	// 	Route::delete('admin/users-management/delete/{id}', 'destroy');
-	// });
+	Route::controller(ConversionController::class)->group(function () {
+		Route::get('admin/conversation-management', 'index')->name('conversation-management');
+		Route::get('admin/conversation-management/{id}', 'show');
+		Route::get('admin/conversation-management-create', 'create');
+		Route::post('admin/conversation-management', 'store');
+		Route::get('admin/conversation-management-edit/{id}', 'edit');
+		Route::put('admin/conversation-management/update/{id}', 'update');
+		Route::delete('admin/conversation-management/delete/{id}', 'destroy');
+	});
 
 
 	// Route::get('admin/customers-management', function () {

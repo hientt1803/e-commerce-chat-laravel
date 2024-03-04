@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('user_id')->on('users');
             $table->foreign('customer_id')->references('customer_id')->on('customers');
 
-            // properties
+            // properties 
             $table->string('status')->default('đang chờ');
 
             // Log

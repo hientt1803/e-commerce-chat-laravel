@@ -12,7 +12,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data['categories'] = Categories::orderBy('status', 'desc')->orderBy('cat_id', 'desc')->paginate(5);
+        $data['categories'] = Categories::orderBy('status', 'desc')->orderBy('cat_id', 'desc')->paginate(10);
         return view('admin.laravel-navigation.categories.index', $data);
     } 
 
