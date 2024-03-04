@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\ProductsController;
@@ -69,6 +70,16 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('admin/categories-management-edit/{id}', 'edit')->name('categories-management-edit');
 		Route::put('admin/categories-management/update/{id}', 'update');
 		Route::delete('admin/categories-management/delete/{id}', 'destroy');
+	});
+
+	// ******************* Customer route *******************
+	Route::controller(CustomersController::class)->group(function () {
+		Route::get('admin/customers-management', 'index')->name('customers-management');
+		Route::get('admin/customers-management-create', 'create');
+		Route::post('admin/customers-management', 'store');
+		Route::get('admin/customers-management-edit/{id}', 'edit')->name('customers-management-edit');
+		Route::put('admin/customers-management/update/{id}', 'update');
+		Route::delete('admin/customers-management/delete/{id}', 'destroy');
 	});
 
 	// ******************* Product route *******************
