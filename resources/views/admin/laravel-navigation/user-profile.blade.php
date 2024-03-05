@@ -14,8 +14,7 @@
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
                             <img id="userImage" src="{{asset('storage/'. auth()->user()->image)}}" alt="..." class="w-100 border-radius-lg shadow-sm">
-                            <input type="file" id="imageInput" style="display: none;">
-                            <input type="file" id="actullyImageInput" name="image" style="display: none;">
+                            <input type="file" id="imageInput" name="image" style="display: none;">
                             <a href="javascript:;" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2">
                                 <i class="fa fa-pen top-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Image"></i>
                             </a>
@@ -36,8 +35,6 @@
                                     $('#userImage').attr('src', reader.result);
                                 }
                                 reader.readAsDataURL(file);
-
-                                $('#actullyImageInput').val(reader.result);
                             });
                         });
 
@@ -59,7 +56,7 @@
                                 {{ __( auth()->user()->fullname ) }}
                             </h5>
                             <p class="mb-0 font-weight-bold text-sm">
-                                {{ __(' CEO / Co-Founder') }}
+                                {{ __(' CEO / ' . auth()->user()->role) }}
                             </p>
                         </div>
                     </div>
@@ -180,7 +177,7 @@
                             <div class="form-group">
                                 <label for="user-email" class="form-control-label">{{ __('Mật khẩu') }}</label>
                                 <div class="@error('password')border border-danger rounded-3 @enderror">
-                                    <input class="form-control" value="12345" type="password" placeholder="@example.com" id="user-password" name="password">
+                                    <input class="form-control" value="{{auth()->user()->password}}" type="password" placeholder="12345" id="user-password" name="password">
                                     @error('password')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror

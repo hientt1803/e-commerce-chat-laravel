@@ -144,7 +144,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="float-right ms-auto ps-auto mt-5">
+                        <div class="float-right mx-4 ps-auto mt-5">
                             {{ $customers->links() }}
                         </div>
                     </div>
