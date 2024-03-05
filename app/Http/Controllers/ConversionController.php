@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Conversion;
+use App\Models\Messages;
 use Illuminate\Http\Request;
 
 class ConversionController extends Controller
@@ -12,7 +13,15 @@ class ConversionController extends Controller
      */
     public function index()
     {
-        $data['conversions'] = Conversion::orderBy('status', 'desc')->orderBy('cvs_id', 'desc')->with('user')->with('customer')->paginate(10);
+        $data['conversions'] = Conversion::OrderBy('create_at', 'desc')
+            ->with(['messages' => function ($query) {
+                $query->orderBy('create_at', 'desc')->first();
+            }])
+            ->with('user')
+            ->with('customer')
+            ->get();
+
+        // dd($data);
         return view('admin.laravel-navigation.conversation.index', $data);
     }
 
@@ -37,7 +46,29 @@ class ConversionController extends Controller
      */
     public function show($id)
     {
-        $data['conversions'] = Conversion::orderBy('status', 'desc')->orderBy('cvs_id', 'desc')->with('user')->with('customer')->paginate(10);
+        $messages = Messages::where('cvs_id', $id)
+            ->orderBy('send_time', 'asc')
+            ->with('conversion')
+            ->get();
+
+        $data['messages'] = $messages;
+        $data['cvs_id'] = $id;
+
+        $latestMessage = Messages::where('cvs_id', $id)
+            ->orderBy('send_time', 'desc')
+            ->with('conversion.customer')
+            ->latest()
+            ->first();
+
+        if ($latestMessage) {
+            $latestMessage->update(['status' => 'read']);
+
+            // dd($latestMessage);
+            $data['customer'] = $latestMessage->conversion->customer;
+        }
+
+        // dd($data['customer']);
+
         return view('admin.laravel-navigation.conversation.inbox', $data);
     }
 

@@ -20,11 +20,11 @@ trait ProductRelationship
 
     public function cartDetail(): HasMany
     {
-        return $this->hasMany(Cart_detail::class, 'cart_detail_id');
+        return $this->hasMany(Cart_detail::class, 'product_id');
     }
 
     public function orderDetail(): HasMany
     {
-        return $this->hasMany(Order_detail::class, 'order_detail_id');
+        return $this->hasMany(Order_detail::class, 'product_id');
     }
 }

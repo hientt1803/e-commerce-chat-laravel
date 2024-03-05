@@ -19,9 +19,15 @@ return new class extends Migration
             $table->unsignedBigInteger('cvs_id');
             $table->foreign('cvs_id')->references('cvs_id')->on('conversions');
 
-            // properties
-            $table->integer('sender_id');
-            $table->double('receiver_id')->default('1');
+            // Sender
+            $table->unsignedBigInteger('sender_id');
+            $table->enum('sender_type', ['user', 'customer']);
+
+            // Receiver
+            $table->unsignedBigInteger('receiver_id');
+            $table->enum('receiver_type', ['user', 'customer']);
+
+            // Properties
             $table->mediumText('content');
             $table->dateTime('send_time')->useCurrent();
             $table->string('status')->default('chưa đọc');

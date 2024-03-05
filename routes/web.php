@@ -3,6 +3,7 @@
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\InfoUserController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CustomersController;
@@ -118,12 +119,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::controller(ConversionController::class)->group(function () {
 		Route::get('admin/conversation-management', 'index')->name('conversation-management');
 		Route::get('admin/conversation-management/{id}', 'show');
-		Route::get('admin/conversation-management-create', 'create');
-		Route::post('admin/conversation-management', 'store');
-		Route::get('admin/conversation-management-edit/{id}', 'edit');
-		Route::put('admin/conversation-management/update/{id}', 'update');
-		Route::delete('admin/conversation-management/delete/{id}', 'destroy');
 	});
+
+	// ******************* Conversation route *******************
+	Route::controller(MessagesController::class)->group(function () {
+		Route::post('admin/messages-management', 'store');
+	});
+
+	// Route::resource('conversation-management', ConversionController::class);
 
 
 	// Route::get('admin/customers-management', function () {

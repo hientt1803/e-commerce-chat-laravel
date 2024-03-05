@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('customer_id')->references('customer_id')->on('customers');
 
             // properties 
-            $table->string('status')->default('đang chờ');
+            $table->boolean('status')->default(true);
 
             // Log
             $table->timestamp('create_at')->comment('Thời điểm tạo')->useCurrent();
