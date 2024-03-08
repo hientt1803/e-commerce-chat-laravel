@@ -3,6 +3,7 @@
 namespace App\Models\trait\relationship;
 
 use App\Models\Customers;
+use App\Models\Messages;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,8 +18,13 @@ trait ConversionRelationship
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function customer(): HasMany
+    public function customer(): BelongsTo
     {
-        return $this->hasMany(Customers::class, 'customer_id');
+        return $this->belongsTo(Customers::class, 'customer_id');
+    }
+
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Messages::class, 'cvs_id');
     }
 }

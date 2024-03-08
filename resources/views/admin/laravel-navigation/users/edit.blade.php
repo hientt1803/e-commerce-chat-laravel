@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="password" class="form-control-label">Mật khẩu</label>
-                                    <input class="form-control" type="password" value="******" placeholder="12345" id="password" name="password">
+                                    <input class="form-control" type="password" value="{{$user->password}}" placeholder="12345" id="password" name="password">
                                     @error('password')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror

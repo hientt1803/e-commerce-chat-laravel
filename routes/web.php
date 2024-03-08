@@ -3,10 +3,10 @@
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\InfoUserController;
+use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CustomersController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
@@ -45,8 +45,6 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('admin.categories.update');
 
 Route::group(['middleware' => 'auth'], function () {
-
-	Route::get('/', [HomeController::class, 'home']);
 	Route::get('admin/dashboard', function () {
 		return view('admin.dashboard');
 	})->name('dashboard');
@@ -118,28 +116,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::controller(ConversionController::class)->group(function () {
 		Route::get('admin/conversation-management', 'index')->name('conversation-management');
 		Route::get('admin/conversation-management/{id}', 'show');
-		Route::get('admin/conversation-management-create', 'create');
-		Route::post('admin/conversation-management', 'store');
-		Route::get('admin/conversation-management-edit/{id}', 'edit');
-		Route::put('admin/conversation-management/update/{id}', 'update');
-		Route::delete('admin/conversation-management/delete/{id}', 'destroy');
 	});
 
-
-	// Route::get('admin/customers-management', function () {
-	// 	return view('admin/laravel-navigation/customers-management');
-	// })->name('customers-management');
-
-	// Route::get('admin/orders-management', function () {
-	// 	return view('admin/laravel-navigation/orders-management');
-	// })->name('orders-management');
-
-	Route::get('admin/tables', function () {
-		return view('admin/tables');
-	})->name('tables');
+	// ******************* Conversation route *******************
+	Route::controller(MessagesController::class)->group(function () {
+		Route::post('admin/messages-management', 'store');
+	});
 
 	Route::get('/logout', [SessionsController::class, 'destroy']);
-	// Route::get('/user-profile', [InfoUserController::class, 'create']);
 	Route::get('/login', function () {
 		return view('/admin/dashboard');
 	})->name('sign-up');
@@ -156,6 +140,36 @@ Route::group(['middleware' => 'guest'], function () {
 	Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
 	Route::get('/reset-password/{token}', [ResetController::class, 'resetPass'])->name('password.reset');
 	Route::post('/reset-password', [ChangePasswordController::class, 'changePassword'])->name('password.update');
+
+
+	// ******************* Client route *******************
+	Route::get('/', function () {
+		return view('client.navigation.home.index');
+	})->name('home');
+	
+	Route::get('/shop', function () {
+		return view('client.navigation.shop.index');
+	})->name('shop');
+	
+	Route::get('/product-detail', function () {
+		return view('client.navigation.product_detail.index');
+	})->name('shop-detail');
+
+	Route::get('/contact', function () {
+		return view('client.navigation.contact.index');
+	})->name('contact');
+	
+	Route::get('/blog', function () {
+		return view('client.navigation.blog.index');
+	})->name('blog');
+	
+	Route::get('/cart', function () {
+		return view('client.navigation.cart.index');
+	})->name('cart');
+	
+	Route::get('/checkout', function () {
+		return view('client.navigation.checkout.index');
+	})->name('checkout');
 });
 
 Route::get('/login', function () {

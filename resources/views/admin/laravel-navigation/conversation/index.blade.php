@@ -24,25 +24,29 @@
                 @endif
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="card shadow-none border-1 rounded mx-4 my-2 p-2 position-relative">
-                        <a href="{{ url('admin/conversation-management/1') }}">
+                        @foreach($conversions as $index => $conversion)
+                        <a href="{{ url('admin/conversation-management/' . $conversion->cvs_id )}}">
                             <div class="d-flex justify-content-between fs-6">
                                 <span class="fw-bolder text-black">
-                                    Jessica
+                                    {{$conversion->customer->customer_name}}
                                 </span>
                                 <span class="fw-bolder text-black-50">
-                                    2024-03-03 21:56:07
+                                    {{$conversion->messages[0]->send_time}}
                                 </span>
                             </div>
-                            <div class="d-flex flex-wrap">
-                                abbbbbbbbbb bbbbbbbbbbbbbbbb bbbbbbbbbbbbbbb bbbbbbbbbbbbbbb bbbbbbbbbbbbbb bbbbbbbbbbb aaaaa bbbb cccccc
+                            <div class="d-flex flex-wrap ">
+                                {{$conversion->messages[0]->content}}
                             </div>
 
                             <!-- Notification -->
+                            @if($conversion->messages[0]->sender_type == 'customer' && $conversion->messages[0]->status == 'chưa đọc')
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                 new
                                 <span class="visually-hidden">unread messages</span>
                             </span>
+                            @endif
                         </a>
+                        @endforeach
                     </div>
                 </div>
             </div>

@@ -71,6 +71,8 @@ class InfoUserController extends Controller
             $user->image = $imagePath;
         }
 
+        // dd($user);
+
         $user->update();
 
         return redirect('/admin/user-profile')->with('success', 'Profile updated successfully');

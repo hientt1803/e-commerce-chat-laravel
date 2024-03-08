@@ -1,6 +1,8 @@
-How to setup application.
+How to setup application. 
+## Recommended using git batch
 
 ### Do this one 👀👀 
+    - Open terminal
     - composer global require laravel/installer
     - composer install
     - php artisan key:generate

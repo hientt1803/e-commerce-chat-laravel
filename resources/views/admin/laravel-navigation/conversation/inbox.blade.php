@@ -13,6 +13,14 @@
 <!-- CSS Files -->
 <link id="pagestyle" href="../../../assets/css/soft-ui-dashboard.css?v=1.0.3" rel="stylesheet" />
 
+<style>
+    .scroll-area {
+        height: 500px;
+        overflow-y: scroll;
+        background: #fbfbfb;
+    }
+</style>
+
 <div>
     <div class="row">
         <div class="col-12">
@@ -37,25 +45,37 @@
                 </div>
                 @endif
                 <div class="card-body px-0 pt-0 pb-2">
-                    <div class="card shadow-none border-1 rounded mx-4 my-2 p-2 position-relative">
-                        <div class="d-flex justify-content-between fs-6">
-                            <span class="fw-bolder text-black">
-                                Jessica
-                            </span>
-                            <span class="fw-bolder text-black-50">
-                                2024-03-03 21:56:07
-                            </span>
+                    <div class="scroll-area card shadow-none border-1 rounded mx-4 my-2 p-2">
+                        @foreach($messages as $message)
+                        @if($message->sender_type == 'customer')
+                        <!-- Customer Message -->
+                        <div class="d-flex flex-row mb-3">
+                            <div class="p-2 bg-light rounded">
+                                <p class="mb-0">{{ $message->content }}</p>
+                            </div>
                         </div>
-                        <div class="d-flex flex-wrap">
-                            abbbbbbbbbb bbbbbbbbbbbbbbbb bbbbbbbbbbbbbbb bbbbbbbbbbbbbbb bbbbbbbbbbbbbb bbbbbbbbbbb aaaaa bbbb cccccc
+                        @else
+                        <!-- Admin Message -->
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <div class="p-2 bg-primary text-white rounded">
+                                <p class="mb-0">{{ $message->content }}</p>
+                            </div>
                         </div>
-
-                        <!-- Notification -->
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            new
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
+                        @endif
+                        @endforeach
                     </div>
+                </div>
+
+                <div class="card-footer">
+                    <form action="/admin/messages-management" method="POST" enctype="multipart/form-data" class="d-flex justify-content-between gap-3">
+                        @csrf
+                        <textarea class="form-control" id="message" rows="1" placeholder="message..." name="content"></textarea>
+                        <input type="hidden" value="{{$cvs_id}}" name="cvs_id">
+                        <input type="hidden" value="{{$customer->customer_id}}" name="customer_id">
+                        <button class="btn bg-gradient-primary btn-md">
+                            Gửi
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
