@@ -10,7 +10,7 @@
             <div class="col-xl-6 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="/">Home</a></li>
+                        <li class="active"><a href="/">Trang chủ</a></li>
                         <li><a href="/shop">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
@@ -20,15 +20,15 @@
                             </ul>
                         </li>
                         <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/contact">Liên hệ</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__right">
                     <div class="header__right__auth">
-                        <a href="/login">Login</a>
-                        <a href="/register">Register</a>
+                        <a href="/login">Đăng nhập</a>
+                        <a href="/register">Đăng ký</a>
                     </div>
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>

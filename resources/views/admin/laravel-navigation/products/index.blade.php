@@ -104,7 +104,7 @@
                                         <span class="text-secondary text-xs font-weight-bold">{{ $product->create_at }}</span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="{{ url('admin/products-management-edit/' . $product->cat_id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
+                                        <a href="{{ url('admin/products-management-edit/' . $product->product_id) }}" class="mx-3" data-bs-toggle="tooltip" data-bs-original-title="Edit product">
                                             <i class="fas fa-user-edit text-secondary"></i>
                                         </a>
                                         <span type="button" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $product->cat_id }}">

@@ -95,10 +95,10 @@ class ProductsController extends Controller
     {
         $request->validate([
             'product_name' => 'required|string|max:255',
-            'price' => 'required|double',
-            'quantity' => 'required|double',
+            'price' => 'required',
+            'quantity' => 'required',
             'description' => '',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'cat_id' => 'required'
         ]);
 

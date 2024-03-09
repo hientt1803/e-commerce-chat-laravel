@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoUserController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\OrderController;
@@ -24,25 +25,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Client
-// Route::get('/', [HomeController::class, 'index']);
-
-
-
-// ***************** Admin *****************
-// -----Categories
-// Route::resource('admin/categories', CategoriesController::class);
-//  GET
-// Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('admin.categories.index');
-
-// // POST
-// Route::get('/admin/categories/create', [CategoriesController::class, 'create'])->name('admin.categories.create');
-// Route::post('/admin/categories', [CategoriesController::class, 'store'])->name('admin.categories.store');
-
-// // UPDATE
-// Route::get('/admin/categories/{category}', [CategoriesController::class, 'edit'])->name('admin.categories.update');
-// Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('admin.categories.update');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('admin/dashboard', function () {
@@ -140,38 +122,36 @@ Route::group(['middleware' => 'guest'], function () {
 	Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
 	Route::get('/reset-password/{token}', [ResetController::class, 'resetPass'])->name('password.reset');
 	Route::post('/reset-password', [ChangePasswordController::class, 'changePassword'])->name('password.update');
-
-
-	// ******************* Client route *******************
-	Route::get('/', function () {
-		return view('client.navigation.home.index');
-	})->name('home');
-	
-	Route::get('/shop', function () {
-		return view('client.navigation.shop.index');
-	})->name('shop');
-	
-	Route::get('/product-detail', function () {
-		return view('client.navigation.product_detail.index');
-	})->name('shop-detail');
-
-	Route::get('/contact', function () {
-		return view('client.navigation.contact.index');
-	})->name('contact');
-	
-	Route::get('/blog', function () {
-		return view('client.navigation.blog.index');
-	})->name('blog');
-	
-	Route::get('/cart', function () {
-		return view('client.navigation.cart.index');
-	})->name('cart');
-	
-	Route::get('/checkout', function () {
-		return view('client.navigation.checkout.index');
-	})->name('checkout');
 });
 
-Route::get('/login', function () {
-	return view('session/login-session');
-})->name('login');
+// Route::get('/login', function () {
+// 	return view('session/login-session');
+// })->name('login');
+
+
+// ******************* Client route *******************
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/shop', function () {
+	return view('client.navigation.shop.index');
+})->name('shop');
+
+Route::get('/product-detail', function () {
+	return view('client.navigation.product_detail.index');
+})->name('shop-detail');
+
+Route::get('/contact', function () {
+	return view('client.navigation.contact.index');
+})->name('contact');
+
+Route::get('/blog', function () {
+	return view('client.navigation.blog.index');
+})->name('blog');
+
+Route::get('/cart', function () {
+	return view('client.navigation.cart.index');
+})->name('cart');
+
+Route::get('/checkout', function () {
+	return view('client.navigation.checkout.index');
+})->name('checkout');

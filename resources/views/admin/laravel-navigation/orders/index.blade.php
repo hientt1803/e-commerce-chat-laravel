@@ -65,6 +65,9 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($orders->isEmpty())
+                                <h2 class="font-weight-bold text-center m-3">Bạn không có đơn hàng nào</h2>
+                                @else
                                 @foreach($orders as $index => $order)
                                 <tr>
                                     <td class="ps-4">
@@ -302,7 +305,9 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                @endif
                             </tbody>
+
                         </table>
                         <div class="float-right mx-4 ml-4 mt-5">
                             {{ $orders->links() }}

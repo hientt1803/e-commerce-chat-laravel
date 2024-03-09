@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Categories;
+use App\Models\Products;
 
 class HomeController extends Controller
 {
-    public function home()
+    public function index()
     {
-        $data = 'Hello Test';
-        return redirect('dashboard')->with('message', $data);
+        $data['productNews'] = Products::orderBy('create_at', 'desc')->with('categories')->limit(8)->get();
+        $data['categories'] = Categories::all();
+        // dd($data);
+        return view('client.navigation.home.index', $data);
     }
 }
