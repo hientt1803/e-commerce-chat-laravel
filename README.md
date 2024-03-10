@@ -5,8 +5,9 @@ How to setup application.
     - Open terminal
     - composer global require laravel/installer
     - composer install
+    - create .env file => copy data from .env.example to .env
     - php artisan key:generate
-    - php artisan migrate:fresh
+    - php artisan migrate
     - php artisan db:seed
     - php artisan storage:link
     - run application: php artisan serve
