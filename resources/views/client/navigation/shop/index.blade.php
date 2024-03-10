@@ -91,7 +91,7 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="#">{{$product->product_name}}</a></h6>
+                                <h6><a href="{{url('/shop/product-detail/'.$product->product_id)}}">{{$product->product_name}}</a></h6>
                                 <div class="rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -107,7 +107,7 @@
                     @endif
                     <div class="col-lg-12 text-center">
                         <!-- <div class="pagination__option"> -->
-                            {{ $products->links() }}
+                        {{ $products->links() }}
                         <!-- </div> -->
                     </div>
                 </div>

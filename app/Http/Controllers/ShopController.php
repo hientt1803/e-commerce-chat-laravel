@@ -13,8 +13,16 @@ class ShopController extends Controller
         $data['categories'] = Categories::all();
         $data['products'] = Products::where('status', '1')->paginate(10);
 
-        // dd($data['bestSeller']);
         return view('client.navigation.shop.index', $data);
+    }
+
+    public function show($id)
+    {
+        $product = Products::where('product_id', $id)->with('categories')->first();
+        $relatedProducts = Products::whereHas('categories', function ($query) use ($product) {
+            $query->where('cat_id', $product->categories->cat_id);
+        })->paginate(10);
+        return view('client.navigation.product_detail.index', compact('product', 'relatedProducts'));
     }
 
     public function filterByCategory($id)

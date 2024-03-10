@@ -10,8 +10,8 @@
             <div class="col-xl-6 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="/">Trang chủ</a></li>
-                        <li><a href="/shop">Shop</a></li>
+                        <li class="{{ (Request::is('/') ? 'active' : '') }}"><a href="/">Trang chủ</a></li>
+                        <li class="{{ (Request::is('shop') || Request::is('shop/product-detail/{id}') ? 'active' : '') }}"><a href="/shop">Shop</a></li>
                         <!-- <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="product-detail">Product Details</a></li>
@@ -19,21 +19,34 @@
                                 <li><a href="checkout">Checkout</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/contact">Liên hệ</a></li>
+                        <li class="{{ (Request::is('blog') ? 'active' : '') }}"><a href="/blog">Blog</a></li>
+                        <li class="{{ (Request::is('contact') ? 'active' : '') }}"><a href="/contact">Liên hệ</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
-                <div class="header__right">
+                <div class="header__right d-flex align-items-center gap-2">
+                    @if(session('customer'))
+                    <div class="dropdown">
+                        <a class="btn btn-transparent dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{session('customer')->customer_name}}
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    @else
                     <div class="header__right__auth">
                         <a href="/login">Đăng nhập</a>
                         <a href="/register">Đăng ký</a>
                     </div>
+                    @endif
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="/history"><span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
+                        <li><a href="/order-history"><i class="fa fa-history" aria-hidden="true"></i>
                             </a></li>
                         <li><a href="/cart"><span class="icon_bag_alt"></span>
                                 <div class="tip">2</div>

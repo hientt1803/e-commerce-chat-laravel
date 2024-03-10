@@ -75,7 +75,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs font-weight-bold mb-0">{{ $customer->password }}</p>
+                                            <p class="text-xs font-weight-bold mb-0 text-truncate" style="max-width: 100px;">{{ $customer->password }}</p>
                                         </div>
                                     </td>
                                     <td>

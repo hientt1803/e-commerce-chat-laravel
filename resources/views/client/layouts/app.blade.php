@@ -70,7 +70,6 @@
     </div>
     <!-- Offcanvas Menu End -->
 
-
     @guest
     @yield('guest')
     @endguest

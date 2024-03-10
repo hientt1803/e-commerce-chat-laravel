@@ -27,7 +27,7 @@ class Customers extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'cuatomer_name',
+        'customer_name',
         'email',
         'password',
         'birthday',
