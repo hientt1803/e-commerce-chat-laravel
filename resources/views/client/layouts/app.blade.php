@@ -20,8 +20,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{asset('assets/img/favicon.png')}}">
     <title>
         Augentern Shop
     </title>
@@ -30,14 +30,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="../assets/client/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../assets/client/css/style.css" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/bootstrap.min.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/font-awesome.min.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/elegant-icons.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/jquery-ui.min.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/magnific-popup.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/owl.carousel.min.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/slicknav.min.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/style.css')}}" type="text/css">
 </head>
 
 <body>
@@ -87,16 +87,16 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="../assets/client/js/jquery-3.3.1.min.js"></script>
-    <script src="../assets/client/js/bootstrap.min.js"></script>
-    <script src="../assets/client/js/jquery.magnific-popup.min.js"></script>
-    <script src="../assets/client/js/jquery-ui.min.js"></script>
-    <script src="../assets/client/js/mixitup.min.js"></script>
-    <script src="../assets/client/js/jquery.countdown.min.js"></script>
-    <script src="../assets/client/js/jquery.slicknav.js"></script>
-    <script src="../assets/client/js/owl.carousel.min.js"></script>
-    <script src="../assets/client/js/jquery.nicescroll.min.js"></script>
-    <script src="../assets/client/js/main.js"></script>
+    <script src=" {{asset('assets/client/js/jquery-3.3.1.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/bootstrap.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/jquery-ui.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/mixitup.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/jquery.countdown.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/jquery.slicknav.js')}}"></script>
+    <script src=" {{asset('assets/client/js/owl.carousel.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/jquery.nicescroll.min.js')}}"></script>
+    <script src=" {{asset('assets/client/js/main.js')}}"></script>
 </body>
 
 </html>

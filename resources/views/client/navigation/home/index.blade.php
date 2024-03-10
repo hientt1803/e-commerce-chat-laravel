@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 p-0">
-                <div class="categories__item categories__large__item set-bg" data-setbg="../assets/client/img/home/iphone-15-pro-max-tu-nhien-1-1.jpg" style="background-size: cover; background-position-x: 0%;">
+                <div class="categories__item categories__large__item set-bg" data-setbg="../assets/client/img/home/iphone-15-pro-max-tu-nhien-1-1.jpg" style="background-size: cover;">
                     <div class="categories__text">
                         <h1>Iphone Collection</h1>
                         <p>Danh mục các sản phẩm Iphone bán chạy nhất hiện nay.</p>
@@ -18,7 +18,7 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/huawei-nova-5t-blue-600x600-600x600.jpg" style="background-size: contain; background-position-x: 200%;">
+                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/huawei-nova-5t-blue-600x600-600x600.jpg" style="background-size: 225px 225px;background-position: center center; background-repeat: no-repeat;">
                             <div class="categories__text">
                                 <h4>Huawei</h4>
                                 <p>358 sản phẩm</p>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/samsung-galaxy-z-fold5-kem-600x600.jpg" style="background-size: contain; background-position-x: 200%;">
+                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/samsung-galaxy-z-fold5-kem-600x600.jpg" style="background-size: 225px 225px;background-position: center center; background-repeat: no-repeat;">
                             <div class="categories__text">
                                 <h4>samsung</h4>
                                 <p>273 sản phẩm</p>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/xiaomi-14-white-thumbnew-600x600.jpg" style="background-size: contain; background-position-x: 200%;">
+                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/xiaomi-14-white-thumbnew-600x600.jpg" style="background-size: 225px 225px;background-position: center center; background-repeat: no-repeat;">
                             <div class="categories__text">
                                 <h4>Xiaomi</h4>
                                 <p>159 sản phẩm</p>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/oppo-reno-11-pro-xam-thumb-600x600.jpg" style="background-size: contain; background-position-x: 200%;">
+                        <div class="categories__item set-bg" data-setbg="../assets/client/img/home/oppo-reno-11-pro-xam-thumb-600x600.jpg" style="background-size: 225px 225px;background-position: center center; background-repeat: no-repeat;">
                             <div class="categories__text">
                                 <h4>Oppo</h4>
                                 <p>792 sản phẩm</p>
@@ -156,12 +156,13 @@
                     <div class="section-title">
                         <h4>Hot Trend</h4>
                     </div>
+                    @foreach($hotTrend as $index => $trend)
                     <div class="trend__item">
                         <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/ht-1.jpg" alt="">
+                            <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
                         </div>
                         <div class="trend__item__text">
-                            <h6>Chain bucket bag</h6>
+                            <h6>{{$trend->product_name}}</h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -169,54 +170,24 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">$ 59.0</div>
+                            <div class="product__price">{{number_format($trend->price, 0, ',', '.')}} VND</div>
                         </div>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/ht-2.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Pendant earrings</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/ht-3.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Cotton T-Shirt</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="trend__content">
                     <div class="section-title">
-                        <h4>Best seller</h4>
+                        <h4>Bán chạy nhất</h4>
                     </div>
+                    @foreach($hotTrend as $index => $trend)
                     <div class="trend__item">
                         <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/bs-1.jpg" alt="">
+                            <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
                         </div>
                         <div class="trend__item__text">
-                            <h6>Cotton T-Shirt</h6>
+                            <h6>{{$trend->product_name}}</h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -224,54 +195,24 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">$ 59.0</div>
+                            <div class="product__price">{{number_format($trend->price, 0, ',', '.')}} VND</div>
                         </div>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/bs-2.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Zip-pockets pebbled tote <br />briefcase</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/bs-3.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Round leather bag</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="trend__content">
                     <div class="section-title">
-                        <h4>Feature</h4>
+                        <h4>Vừa cập nhật</h4>
                     </div>
+                    @foreach($hotTrend as $index => $trend)
                     <div class="trend__item">
                         <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/f-1.jpg" alt="">
+                            <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
                         </div>
                         <div class="trend__item__text">
-                            <h6>Bow wrap skirt</h6>
+                            <h6>{{$trend->product_name}}</h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -279,41 +220,10 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">$ 59.0</div>
+                            <div class="product__price">{{number_format($trend->price, 0, ',', '.')}} VND</div>
                         </div>
                     </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/f-2.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Metallic earrings</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
-                    <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="../assets/client/img/trend/f-3.jpg" alt="">
-                        </div>
-                        <div class="trend__item__text">
-                            <h6>Flap cross-body bag</h6>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <div class="product__price">$ 59.0</div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

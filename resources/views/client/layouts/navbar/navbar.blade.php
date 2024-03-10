@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-xl-3 col-lg-2">
                 <div class="header__logo">
-                    <a href="/"><img src="../assets/client/img/logo.png" alt=""></a>
+                    <a href="/"><img src="{{asset('assets/client/img/logo.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-7">
@@ -12,13 +12,13 @@
                     <ul>
                         <li class="active"><a href="/">Trang chủ</a></li>
                         <li><a href="/shop">Shop</a></li>
-                        <li><a href="#">Pages</a>
+                        <!-- <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="product-detail">Product Details</a></li>
                                 <li><a href="cart">Shop Cart</a></li>
                                 <li><a href="checkout">Checkout</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li><a href="/blog">Blog</a></li>
                         <li><a href="/contact">Liên hệ</a></li>
                     </ul>

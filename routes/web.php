@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -111,8 +112,6 @@ Route::group(['middleware' => 'auth'], function () {
 	})->name('sign-up');
 });
 
-
-
 Route::group(['middleware' => 'guest'], function () {
 	Route::get('/register', [RegisterController::class, 'create']);
 	Route::post('/register', [RegisterController::class, 'store']);
@@ -132,9 +131,11 @@ Route::group(['middleware' => 'guest'], function () {
 // ******************* Client route *******************
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/shop', function () {
-	return view('client.navigation.shop.index');
-})->name('shop');
+Route::controller(ShopController::class)->group(function () {
+	Route::get('/shop', 'index')->name('shop');
+	Route::get('/shop/category/{id}', 'filterByCategory')->name('filterByCategory');
+	Route::get('/shop/filter-by-price', 'filterByPrice')->name('filterByPrice');
+});
 
 Route::get('/product-detail', function () {
 	return view('client.navigation.product_detail.index');

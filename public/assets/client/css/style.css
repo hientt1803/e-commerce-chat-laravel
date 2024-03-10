@@ -1456,7 +1456,7 @@ ol {
 	left: 81px;
 	top: 12px;
 	height: 1px;
-	width: 5px;
+	width: fit-content;
 	background: #0d0d0d;
 	content: "";
 }
@@ -1464,7 +1464,7 @@ ol {
 .filter-range-wrap .range-slider .price-input input {
 	font-size: 16px;
 	color: #0d0d0d;
-	max-width: 16%;
+	max-width: fit-content;
 	border: none;
 }
 
