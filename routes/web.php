@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartDetailController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
@@ -115,7 +117,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'guest'], function () {
 	Route::get('/register', [RegisterController::class, 'create']);
 	Route::post('/register', [RegisterController::class, 'store']);
-	Route::get('/login', [SessionsController::class, 'create']);
+	Route::get('/login', [SessionsController::class, 'create'])->name('login');
 	Route::post('/session', [SessionsController::class, 'store']);
 	Route::get('/login/forgot-password', [ResetController::class, 'create']);
 	Route::post('/forgot-password', [ResetController::class, 'sendEmail']);
@@ -138,9 +140,17 @@ Route::controller(ShopController::class)->group(function () {
 	Route::get('/shop/filter-by-price', 'filterByPrice')->name('filterByPrice');
 });
 
-Route::get('/product-detail', function () {
-	return view('client.navigation.product_detail.index');
-})->name('shop-detail');
+Route::controller(CartDetailController::class)->group(function () {
+	Route::get('/cart', 'index')->name('cart');
+	Route::post('/cart-detail', 'store');
+	Route::put('/cart-detail', 'update');
+	Route::delete('/cart-detail/{id}', 'destroy');
+});
+
+Route::controller(CheckoutController::class)->group(function () {
+	Route::post('/check-out-process', 'processCheckout')->name('checkout');
+	Route::post('/check-out', 'store');
+});
 
 Route::get('/contact', function () {
 	return view('client.navigation.contact.index');
@@ -149,11 +159,3 @@ Route::get('/contact', function () {
 Route::get('/blog', function () {
 	return view('client.navigation.blog.index');
 })->name('blog');
-
-Route::get('/cart', function () {
-	return view('client.navigation.cart.index');
-})->name('cart');
-
-Route::get('/checkout', function () {
-	return view('client.navigation.checkout.index');
-})->name('checkout');

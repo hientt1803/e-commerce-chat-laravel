@@ -35,15 +35,6 @@ class DatabaseSeeder extends Seeder
                 'status' => $faker->boolean,
             ]);
         }
-
-        // for ($i = 0; $i < 10; $i++) {
-        //     DB::table('users')->insert([
-        //         'fullname' => $faker->name,
-        //         'email' => $faker->unique()->safeEmail,
-        //         'password' => Hash::make('12345'),
-        //         'role' => 'customer',
-        //     ]);
-        // }
         
         for ($i = 0; $i < 10; $i++) {
             DB::table('carts')->insert([

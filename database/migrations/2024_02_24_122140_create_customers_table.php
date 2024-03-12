@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('email');
             $table->string('password');
-            $table->date('birthday');
-            $table->string('address');
-            $table->string('phone');
+            $table->date('birthday')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->boolean('status')->default(true);
 
             // Log

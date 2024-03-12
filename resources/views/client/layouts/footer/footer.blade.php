@@ -77,7 +77,7 @@
             </div>
             <div class="col-lg-2 col-md-3 col-sm-5">
                 <div class="footer__widget">
-                    <h6>Quick links</h6>
+                    <h6>Link nhanh</h6>
                     <ul>
                         <li><a href="/">Trang chủ</a></li>
                         <li><a href="/shop">Shop</a></li>

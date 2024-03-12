@@ -2,12 +2,24 @@
 
 namespace App\Models;
 
+use App\Models\trait\relationship\CartRelationship;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cart extends Model
 {
     use HasFactory;
+    use CartRelationship;
+
+    protected $table = 'carts';
+
+    protected $primaryKey = "cart_id";
+
+    public $timestamps = false;
+
+    protected array $dates = ['create_at', 'update_at'];
+
+    protected $dateFormat = 'Y-m-d H:i:s';
 
     /**
      * The attributes that are mass assignable.
@@ -15,7 +27,9 @@ class Cart extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'status'
+        'status',
+        'customer_id',
+        'create_at'
     ];
 
     /**
@@ -24,7 +38,6 @@ class Cart extends Model
      * @var array<int, string>
      */
     protected $hidden = [
-        'create_at',
         'update_at',
     ];
 
@@ -34,8 +47,11 @@ class Cart extends Model
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        // 'image' => 'datetime',
-        // 'password' => 'hashed',
-    ];
+    protected $casts = [];
+
+    public function toArray(): array
+    {
+        $attributes = $this->attributesToArray();
+        return array_merge($attributes, $this->relationsToArray());
+    }
 }

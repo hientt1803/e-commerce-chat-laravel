@@ -69,8 +69,8 @@
             <form role="form text-left" method="POST" action="/register">
               @csrf
               <div class="mb-3">
-                <input type="text" class="form-control" placeholder="Name" name="name" id="name" aria-label="Name" aria-describedby="name" value="{{ old('name') }}">
-                @error('name')
+                <input type="text" class="form-control" placeholder="Họ và tên" name="customer_name" id="customer_name" aria-label="customer_name" aria-describedby="customer_name" value="{{ old('customer_name') }}">
+                @error('customer_name')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                 @enderror
               </div>
@@ -81,7 +81,7 @@
                 @enderror
               </div>
               <div class="mb-3">
-                <input type="password" class="form-control" placeholder="Password" name="password" id="password" aria-label="Password" aria-describedby="password-addon">
+                <input type="password" class="form-control" placeholder="password" name="password" id="password" aria-label="Password" aria-describedby="password-addon">
                 @error('password')
                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                 @enderror
@@ -98,7 +98,7 @@
               <div class="text-center">
                 <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Đăng ký</button>
               </div>
-              <p class="text-sm mt-3 mb-0">Đã có tài khoản? <a href="login" class="text-dark font-weight-bolder">Đăng nhập</a></p>
+              <p class="text-sm mt-3 mb-0">Đã có tài khoản? <a href="/login" class="text-dark font-weight-bolder">Đăng nhập</a></p>
             </form>
           </div>
         </div>

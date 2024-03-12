@@ -33,9 +33,11 @@
                         </a>
 
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="#">Lịch sử đặt hàng</a></li>
+                            <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
+                            <hr>
+                            <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
                         </ul>
                     </div>
                     @else
@@ -49,7 +51,7 @@
                         <li><a href="/order-history"><i class="fa fa-history" aria-hidden="true"></i>
                             </a></li>
                         <li><a href="/cart"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
+                                <div class="tip">{{$cartCount ? $cartCount : 0}}</div>
                             </a></li>
                     </ul>
                 </div>

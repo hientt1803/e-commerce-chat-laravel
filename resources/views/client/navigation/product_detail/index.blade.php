@@ -2,6 +2,20 @@
 
 @section('content')
 
+@if(session('success'))
+<div id="snackbar" data-success="{{ session('success') }}">{{session('success')}}</div>
+<script>
+    function myFunction() {
+        var x = document.getElementById("snackbar");
+        x.className = "show";
+        setTimeout(function() {
+            x.className = x.className.replace("show", "");
+        }, 20000);
+    }
+    myFunction();
+</script>
+@endif
+
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
     <div class="container">
@@ -61,19 +75,24 @@
                     </div>
                     <div class="product__details__price">{{number_format($product->price, 0, ',', '.')}} VND <span>{{number_format($product->price + 2000000, 0, ',', '.')}} VND</span></div>
                     <p>{{ Str::limit($product->description, 100) }}.</p>
-                    <div class="product__details__button">
-                        <div class="quantity">
-                            <span>Số lượng:</span>
-                            <div class="pro-qty">
-                                <input type="text" value="1">
+                    <form action="/cart-detail" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('POST')
+                        <div class="product__details__button">
+                            <div class="quantity">
+                                <span>Số lượng:</span>
+                                <div class="pro-qty">
+                                    <input type="text" value="1" name="quantity">
+                                </div>
                             </div>
+                            <input type="hidden" value="{{$product->product_id}}" name="product_id">
+                            <button type="submit" class="cart-btn outline-none"><span class="icon_bag_alt"></span>Thêm vào giỏ hàng</button>
+                            <ul>
+                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+                                <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+                            </ul>
                         </div>
-                        <a href="#" class="cart-btn"><span class="icon_bag_alt"></span>Thêm vào giỏ hàng</a>
-                        <ul>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-                        </ul>
-                    </div>
+                    </form>
                     <div class="product__details__widget">
                         <ul>
                             <li>
@@ -86,44 +105,6 @@
                                     </label>
                                 </div>
                             </li>
-                            <!-- <li>
-                                <span>Available color:</span>
-                                <div class="color__checkbox">
-                                    <label for="red">
-                                        <input type="radio" name="color__radio" id="red" checked>
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label for="black">
-                                        <input type="radio" name="color__radio" id="black">
-                                        <span class="checkmark black-bg"></span>
-                                    </label>
-                                    <label for="grey">
-                                        <input type="radio" name="color__radio" id="grey">
-                                        <span class="checkmark grey-bg"></span>
-                                    </label>
-                                </div>
-                            </li>
-                            <li>
-                                <span>Available size:</span>
-                                <div class="size__btn">
-                                    <label for="xs-btn" class="active">
-                                        <input type="radio" id="xs-btn">
-                                        xs
-                                    </label>
-                                    <label for="s-btn">
-                                        <input type="radio" id="s-btn">
-                                        s
-                                    </label>
-                                    <label for="m-btn">
-                                        <input type="radio" id="m-btn">
-                                        m
-                                    </label>
-                                    <label for="l-btn">
-                                        <input type="radio" id="l-btn">
-                                        l
-                                    </label>
-                                </div>
-                            </li> -->
                             <li>
                                 <span>Khuyến mãi:</span>
                                 <p>Miễn phí vận chuyển</p>
