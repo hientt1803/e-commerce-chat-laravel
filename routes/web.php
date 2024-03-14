@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartDetailController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CheckoutHistoryController;
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
@@ -143,13 +144,17 @@ Route::controller(ShopController::class)->group(function () {
 Route::controller(CartDetailController::class)->group(function () {
 	Route::get('/cart', 'index')->name('cart');
 	Route::post('/cart-detail', 'store');
-	Route::put('/cart-detail', 'update');
+	Route::post('/cart-detail-update', 'updateMultipleCartQuantity');
 	Route::delete('/cart-detail/{id}', 'destroy');
 });
 
 Route::controller(CheckoutController::class)->group(function () {
 	Route::post('/check-out-process', 'processCheckout')->name('checkout');
 	Route::post('/check-out', 'store');
+});
+
+Route::controller(CheckoutHistoryController::class)->group(function () {
+	Route::get('/order-history', 'index')->name('checkout-history');
 });
 
 Route::get('/contact', function () {

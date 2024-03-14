@@ -248,7 +248,7 @@
                                                                             </td>
                                                                             <td>
                                                                                 <div>
-                                                                                    <p class="text-xs font-weight-bold mb-0">{{ $detail->product->price }}</p>
+                                                                                    <p class="text-xs font-weight-bold mb-0">{{number_format($detail->product->price, 0, ',', '.')}}</p>
                                                                                 </div>
                                                                             </td>
                                                                             <td>
@@ -265,7 +265,7 @@
                                                     </div>
                                                     <div class="modal-footer d-flex justify-content-between">
                                                         <span class="text-secondary fs-5">
-                                                            Tổng tiền: <strong> {{$order->total_price}}</strong> VNĐ.
+                                                            Tổng tiền: <strong> {{number_format($order->total_price, 0, ',', '.')}}</strong> VNĐ.
                                                         </span>
                                                         <div class="d-flex gap-2">
                                                             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Trở về</button>

@@ -2,19 +2,33 @@
 
 @section('content')
 
-@if(session('success'))
-<div id="snackbar" data-success="{{ session('success') }}">{{session('success')}}</div>
-<script>
-    function myFunction() {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
-        setTimeout(function() {
-            x.className = x.className.replace("show", "");
-        }, 20000);
+<style>
+    .custom-button-cart {
+        font-size: 18px;
+        color: #111111;
+        display: block;
+        height: 45px;
+        width: 45px;
+        background: #ffffff;
+        line-height: 48px;
+        text-align: center;
+        border-radius: 50%;
+        -webkit-transition: all, 0.5s;
+        -o-transition: all, 0.5s;
+        transition: all, 0.5s;
     }
-    myFunction();
-</script>
-@endif
+
+    .custom-button-cart:hover {
+        background: #ca1515;
+    }
+
+    .custom-button-cart:hover span {
+        color: #ffffff;
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+</style>
 
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -149,15 +163,32 @@
                     <h5>SẢN PHẨM CÙNG LOẠI</h5>
                 </div>
             </div>
+            @if($relatedProducts->count()==0)
+            <h2 class="text-center fs-4 mx-auto font-weight-bold w-75">
+                Không có sản phẩm nào được tìm thấy.
+            </h2>
+            @else
             @foreach($relatedProducts as $index => $product)
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/' . $product->image)}}">
+                        @if($index / 3 ==0)
                         <div class="label new">New</div>
+                        @endif
                         <ul class="product__hover">
-                            <li><a href="{{asset('/storage/' . $product->image)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            <li><a href="{{asset('storage/'.$product->image)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                            <li>
+                                <a href="{{url('/shop/product-detail/'.$product->product_id)}}"><span class="icon_search"></span></a>
+                            </li>
+                            <li>
+                                <form action="/cart-detail" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    <input type="hidden" value="{{$product->product_id}}" name="product_id">
+                                    <input type="hidden" value="1" name="quantity">
+                                    <button type="submit" class="border-0 outline-none custom-button-cart"><span class="icon_bag_alt"></span></button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
@@ -169,11 +200,16 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">{{number_format($product->price, 0, ',', '.')}} VND</div>
+                        <div class="product__price">
+                            <a href="{{url('/shop/product-detail/'.$product->product_id)}}" class="text-dark">
+                                {{number_format($product->price, 0, ',', '.')}} VND
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             @endforeach
+            @endif
             <div class="col-12 mx-auto">
                 {{$relatedProducts->links()}}
             </div>

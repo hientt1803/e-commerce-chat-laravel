@@ -3784,8 +3784,3 @@ ol {
 		font-size: 24px;
 	}
 }
-
-.dropdown:hover,
-.dropdown-toggle:hover .dropdown-menu {
-	display: block;
-}

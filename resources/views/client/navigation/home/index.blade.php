@@ -2,6 +2,34 @@
 
 @section('content')
 
+<style>
+    .custom-button-cart {
+        font-size: 18px;
+        color: #111111;
+        display: block;
+        height: 45px;
+        width: 45px;
+        background: #ffffff;
+        line-height: 48px;
+        text-align: center;
+        border-radius: 50%;
+        -webkit-transition: all, 0.5s;
+        -o-transition: all, 0.5s;
+        transition: all, 0.5s;
+    }
+
+    .custom-button-cart:hover {
+        background: #ca1515;
+    }
+
+    .custom-button-cart:hover span {
+        color: #ffffff;
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+</style>
+
 <!-- Categories Section Begin -->
 <section class="categories">
     <div class="container-fluid">
@@ -11,7 +39,7 @@
                     <div class="categories__text">
                         <h1>Iphone Collection</h1>
                         <p>Danh mục các sản phẩm Iphone bán chạy nhất hiện nay.</p>
-                        <a href="#">Mua ngay</a>
+                        <a href="/shop/category/1">Mua ngay</a>
                     </div>
                 </div>
             </div>
@@ -22,7 +50,7 @@
                             <div class="categories__text">
                                 <h4>Huawei</h4>
                                 <p>358 sản phẩm</p>
-                                <a href="#">Mua ngay</a>
+                                <a href="/shop/category/2">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -31,7 +59,7 @@
                             <div class="categories__text">
                                 <h4>samsung</h4>
                                 <p>273 sản phẩm</p>
-                                <a href="#">Mua ngay</a>
+                                <a href="/shop/category/3">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +68,7 @@
                             <div class="categories__text">
                                 <h4>Xiaomi</h4>
                                 <p>159 sản phẩm</p>
-                                <a href="#">Mua ngay</a>
+                                <a href="/shop/category/4">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -49,7 +77,7 @@
                             <div class="categories__text">
                                 <h4>Oppo</h4>
                                 <p>792 sản phẩm</p>
-                                <a href="#">Mua ngay</a>
+                                <a href="/shop/category/5">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -90,12 +118,22 @@
                         <div class="label new">New</div>
                         <ul class="product__hover">
                             <li><a href="{{asset('storage/'.$product->image)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                            <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                            <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                            <li>
+                                <a href="{{url('/shop/product-detail/'.$product->product_id)}}"><span class="icon_search"></span></a>
+                            </li>
+                            <li>
+                                <form action="/cart-detail" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('POST')
+                                    <input type="hidden" value="{{$product->product_id}}" name="product_id">
+                                    <input type="hidden" value="1" name="quantity">
+                                    <button type="submit" class="border-0 outline-none custom-button-cart"><span class="icon_bag_alt"></span></button>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">{{$product->product_name}}</a></h6>
+                        <h6><a href="{{url('/shop/product-detail/'.$product->product_id)}}">{{$product->product_name}}</a></h6>
                         <div class="rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -103,7 +141,11 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                         </div>
-                        <div class="product__price">{{number_format($product->price, 0, ',', '.')}} VND</div>
+                        <div class="product__price">
+                            <a href="{{url('/shop/product-detail/'.$product->product_id)}}" class="text-dark">
+                                {{number_format($product->price, 0, ',', '.')}} VND
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,21 +165,21 @@
                         <div class="banner__text">
                             <span>The Iphone Collection</span>
                             <h1>Iphone 15 pro max 1TB</h1>
-                            <a href="#">Mua ngay</a>
+                            <a href="/shop/category/1">Mua ngay</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>The Huawei Collection</span>
                             <h1>Huawei Mate 30 pro</h1>
-                            <a href="#">Mua ngay</a>
+                            <a href="/shop/category/2">Mua ngay</a>
                         </div>
                     </div>
                     <div class="banner__item">
                         <div class="banner__text">
                             <span>The Xiaomi Collection</span>
                             <h1>Xiaomi 14 pro max</h1>
-                            <a href="#">Mua ngay</a>
+                            <a href="/shop/category/5">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -162,7 +204,7 @@
                             <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
                         </div>
                         <div class="trend__item__text">
-                            <h6>{{$trend->product_name}}</h6>
+                            <h6><a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">{{$trend->product_name}}</a></h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -170,7 +212,11 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">{{number_format($trend->price, 0, ',', '.')}} VND</div>
+                            <div class="product__price">
+                                <a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">
+                                    {{number_format($trend->price, 0, ',', '.')}} VND
+                                </a>
+                            </div>
                         </div>
                     </div>
                     @endforeach
@@ -187,7 +233,7 @@
                             <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
                         </div>
                         <div class="trend__item__text">
-                            <h6>{{$trend->product_name}}</h6>
+                            <h6><a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">{{$trend->product_name}}</a></h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -195,7 +241,11 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">{{number_format($trend->price, 0, ',', '.')}} VND</div>
+                            <div class="product__price">
+                                <a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">
+                                    {{number_format($trend->price, 0, ',', '.')}} VND
+                                </a>
+                            </div>
                         </div>
                     </div>
                     @endforeach
@@ -212,7 +262,7 @@
                             <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
                         </div>
                         <div class="trend__item__text">
-                            <h6>{{$trend->product_name}}</h6>
+                            <h6><a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">{{$trend->product_name}}</a></h6>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -220,7 +270,11 @@
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div>
-                            <div class="product__price">{{number_format($trend->price, 0, ',', '.')}} VND</div>
+                            <div class="product__price">
+                                <a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">
+                                    {{number_format($trend->price, 0, ',', '.')}} VND
+                                </a>
+                            </div>
                         </div>
                     </div>
                     @endforeach

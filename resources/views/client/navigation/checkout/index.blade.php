@@ -58,7 +58,7 @@
                             </div>
                             <div class="checkout__form__input">
                                 <p>Mô tả <span>(Không bắt buộc)</span></p>
-                                <textarea class="w-100" rows="3" name="notes" placeholder="Nội dung" required></textarea>
+                                <textarea class="w-100" rows="3" name="notes" placeholder="Nội dung"></textarea>
                             </div>
                         </div>
                     </div>

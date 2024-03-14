@@ -67,6 +67,6 @@ class CheckoutController extends Controller
             }
         }
 
-        return redirect()->route('cart')->with('success', 'Đặt hàng thành công!');
+        return redirect()->route('cart')->with('toastMsg', 'Đặt hàng thành công!');
     }
 }

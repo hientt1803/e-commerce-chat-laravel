@@ -1,0 +1,75 @@
+.dropdown:hover,
+.dropdown-toggle:hover .dropdown-menu {
+    display: block;
+}
+
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #f8f9fa;
+    color: #212529;
+    text-align: center;
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+    position: fixed;
+    z-index: 108000000;
+    top: 10%;
+    right: -10%;
+    transform: translateX(-50%);
+    font-size: 1rem;
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1);
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+    animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        right: -15%;
+        opacity: 0;
+    }
+
+    to {
+        right: -10%;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        right: -15%;
+        opacity: 0;
+    }
+
+    to {
+        right: -10%;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        right: -10%;
+        opacity: 1;
+    }
+
+    to {
+        right: -15%;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        right: -10%;
+        opacity: 1;
+    }
+
+    to {
+        right: -15%;
+        opacity: 0;
+    }
+}

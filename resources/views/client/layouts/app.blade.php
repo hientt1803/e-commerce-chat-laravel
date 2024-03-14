@@ -38,7 +38,7 @@
     <link rel="stylesheet" href=" {{asset('assets/client/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href=" {{asset('assets/client/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href=" {{asset('assets/client/css/style.css')}}" type="text/css">
-    <link rel="stylesheet" href=" {{asset('assets/client/css/toast.css')}}" type="text/css">
+    <link rel="stylesheet" href=" {{asset('assets/client/css/custom.css')}}" type="text/css">
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                 </a></li>
         </ul>
         <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+            <a href="/"><img src="{{asset('assets/client/img/logo.png')}}" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__auth">
@@ -72,21 +72,25 @@
     <!-- Offcanvas Menu End -->
 
     @if(session('toastMsg'))
-    <div aria-live="polite" aria-atomic="true" style="position: fixed;top: 50px;right:20px; min-height: 200px;">
-        <div class="toast bg-light">
-            <div class="toast-header">
-                <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-                <strong class="mr-auto">Thông báo</strong>
-                <small>Just now</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                {{ session('toastMsg') }}
-            </div>
+    <div id="snackbar" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+        <div class="toast-header bg-transparent d-flex justify-content-between">
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="outline-none border-0 bg-transparent"><i class="fa fa-bell" aria-hidden="true"></i></button>
+        </div>
+        <div class="toast-body">
+            {{session('toastMsg')}}
         </div>
     </div>
+    <script>
+        function myFunction() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function() {
+                x.className = x.className.replace("show", "");
+            }, 8000);
+        }
+        myFunction();
+    </script>
     @endif
 
     @guest

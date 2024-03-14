@@ -2,13 +2,41 @@
 
 @section('content')
 
+<style>
+    .custom-button-cart {
+        font-size: 18px;
+        color: #111111;
+        display: block;
+        height: 45px;
+        width: 45px;
+        background: #ffffff;
+        line-height: 48px;
+        text-align: center;
+        border-radius: 50%;
+        -webkit-transition: all, 0.5s;
+        -o-transition: all, 0.5s;
+        transition: all, 0.5s;
+    }
+
+    .custom-button-cart:hover {
+        background: #ca1515;
+    }
+
+    .custom-button-cart:hover span {
+        color: #ffffff;
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+</style>
+
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
-                    <a href="/"><i class="fa fa-home"></i> Home</a>
+                    <a href="/"><i class="fa fa-home"></i> Trang chủ</a>
                     <span>Shop</span>
                 </div>
             </div>
@@ -62,8 +90,8 @@
                                 </div>
                                 <br>
                                 <div class="d-flex gap-1 justify-content-between">
-                                    <button type="submit" class="btn btn-outline-dark w-fit float-start mt-1 font-weight-bold" id="filter">Tìm kiếm theo giá</button>
-                                    <a href="{{route('shop')}}" class="btn btn-danger font-weight-bold outline-none text-white" style="bottom: 0 !important; padding:5px 16px 5px 16px;"><i class="fa fa-trash"></i></a>
+                                    <button type="submit" class="btn btn-outline-dark w-75 mt-1 font-weight-bold" id="filter">Tìm kiếm theo giá</button>
+                                    <a href="{{route('shop')}}" class="btn btn-danger font-weight-bold outline-none text-white" style="bottom: 0 !important; padding:10px 16px 10px 16px;"><i class="fa fa-trash"></i></a>
                                 </div>
                             </div>
                         </form>
@@ -86,10 +114,21 @@
                                 @endif
                                 <ul class="product__hover">
                                     <li><a href="{{asset('storage/'.$product->image)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                    <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                    <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                    <li>
+                                        <a href="{{url('/shop/product-detail/'.$product->product_id)}}"><span class="icon_search"></span></a>
+                                    </li>
+                                    <li>
+                                        <form action="/cart-detail" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('POST')
+                                            <input type="hidden" value="{{$product->product_id}}" name="product_id">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <button type="submit" class="border-0 outline-none custom-button-cart"><span class="icon_bag_alt"></span></button>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
+
                             <div class="product__item__text">
                                 <h6><a href="{{url('/shop/product-detail/'.$product->product_id)}}">{{$product->product_name}}</a></h6>
                                 <div class="rating">
@@ -99,7 +138,11 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <div class="product__price">{{number_format($product->price, 0, ',', '.')}} VND</div>
+                                <div class="product__price">
+                                    <a href="{{url('/shop/product-detail/'.$product->product_id)}}" class="text-dark">
+                                        {{number_format($product->price, 0, ',', '.')}} VND
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

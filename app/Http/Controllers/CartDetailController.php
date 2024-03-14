@@ -105,7 +105,27 @@ class CartDetailController extends Controller
      */
     public function update(Request $request, Cart_detail $cart_detail)
     {
-        //
+        return response()->json(['data' => $request]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function updateMultipleCartQuantity(Request $request)
+    {
+        $cartDetails = $request->cartDetails;
+
+        if (is_array($cartDetails)) {
+            foreach ($cartDetails as $detail) {
+                $cartDetail = Cart_detail::find($detail['cart_detail_id']);
+                if ($cartDetail) {
+                    $cartDetail->quantity = $detail['quantity'];
+                    $cartDetail->update();
+                }
+            }
+        }
+
+        return response()->json(['message' => 'Cập nhật giỏ hàng thành công', 'status' => 200, 'data' => $cartDetails]);
     }
 
     /**

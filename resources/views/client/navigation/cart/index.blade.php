@@ -1,6 +1,17 @@
 @extends('client.layouts.user_type.guest')
 
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Toast -->
+<div id="snackbar" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
+    <div class="toast-header bg-transparent d-flex justify-content-between">
+        <strong class="me-auto">Thông báo</strong>
+        <button type="button" class="outline-none border-0 bg-transparent"><i class="fa fa-bell" aria-hidden="true"></i></button>
+    </div>
+    <div class="toast-body" id="snackbarMessage">
+    </div>
+</div>
 
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
@@ -72,7 +83,7 @@
                                     <td class="cart__price">{{number_format($cart->product->price, 0, ',', '.')}} VND</td>
                                     <td class="cart__quantity">
                                         <div class="pro-qty">
-                                            <input type="text" value="{{$cart->quantity}}">
+                                            <input type="text" value="{{ $cart->quantity }}" class="cart-item-quantity" data-cart-id="{{ $cart->cart_detail_id }}">
                                         </div>
                                     </td>
                                     <td class="cart__total">{{number_format($cart->product->price * $cart->quantity, 0, ',', '.')}} VND</td>
@@ -90,13 +101,23 @@
                                                         _method: 'DELETE',
                                                     },
                                                     success: function(response) {
-                                                        alert('Mục đã được xóa thành công!');
+                                                        showSnackbar('Sản phẩm đã được xóa thành công!');
                                                         location.reload();
                                                     },
                                                     error: function(xhr, status, error) {
-                                                        alert('Xảy ra lỗi khi xóa mục: ' + error);
+                                                        showSnackbar('Xóa giỏ hàng thất bại! Liên hệ ngay cho admin.');
                                                     }
                                                 });
+                                            }
+
+                                            function showSnackbar(message) {
+                                                var x = document.getElementById("snackbarMessage");
+                                                var snackbar = document.getElementById("snackbar");
+                                                snackbar.className = "show";
+                                                x.innerText = message;
+                                                setTimeout(function() {
+                                                    x.className = x.className.replace("show", "");
+                                                }, 8000);
                                             }
                                         </script>
                                     </td>
@@ -115,8 +136,52 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn update__btn">
-                        <a href="/cart-detail"><span class="icon_loading"></span> Cập nhật giỏ hàng</a>
+                        <button type="button" onclick="updateCartItem()" class="outline-none border-0" style="padding: 14px 30px 12px;"><span class="icon_loading"></span> <span>Cập nhật giỏ hàng</span></button>
                     </div>
+
+                    <script>
+                        function updateCartItem() {
+                            alert('run?')
+                            var cartItems = [];
+                            $('.cart-item-quantity').each(function() {
+                                var cartId = $(this).data('cart-id');
+                                var quantity = $(this).val();
+                                cartItems.push({
+                                    cart_detail_id: cartId,
+                                    quantity: quantity
+                                });
+                            });
+
+                            $.ajax({
+                                url: '/cart-detail-update',
+                                type: 'POST',
+                                data: {
+                                    cartDetails: cartItems,
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success: function(response) {
+                                    console.log('run?');
+                                    console.log(
+                                        response
+                                    );
+                                    showSnackbar(response.message);
+                                },
+                                error: function(xhr) {
+                                    showSnackbar('Cập nhật giỏ hàng thất bại! Liên hệ ngay cho admin.');
+                                }
+                            });
+                        }
+
+                        function showSnackbar(message) {
+                            var x = document.getElementById("snackbarMessage");
+                            var snackbar = document.getElementById("snackbar");
+                            snackbar.className = "show";
+                            x.innerText = message;
+                            setTimeout(function() {
+                                x.className = x.className.replace("show", "");
+                            }, 8000);
+                        }
+                    </script>
                 </div>
             </div>
             <div class="row">
@@ -136,7 +201,7 @@
                             <li>Tổng phụ <span>{{ number_format($totalPrice, 0, ',', '.') }} VND</span></li>
                             <li>Tổng tiền <span>{{ number_format($totalPrice, 0, ',', '.') }} VND</span></li>
                         </ul>
-                        <button type="submit" class="site-btn">Tiến hành thanh toán</button>
+                        <button type="submit" class="site-btn w-100">Tiến hành thanh toán</button>
                     </div>
                 </div>
             </div>
