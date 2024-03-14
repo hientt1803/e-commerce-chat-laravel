@@ -48,7 +48,7 @@
                     @endif
                     <ul class="header__right__widget">
                         <li><span class="icon_search search-switch"></span></li>
-                        <li><a href="/order-history"><i class="fa fa-history" aria-hidden="true"></i>
+                        <li><a href="/user/order-history"><i class="fa fa-history" aria-hidden="true"></i>
                             </a></li>
                         <li><a href="/cart"><span class="icon_bag_alt"></span>
                                 <div class="tip">{{$cartCount ? $cartCount : 0}}</div>

@@ -74,18 +74,18 @@ class CustomersController extends Controller
         $request->validate([
             'customer_name' => 'required|string|max:50',
             'email' => 'required|email|max:50',
-            'password' => 'required|min:5|max:20',
+            // 'password' => 'required|min:5|max:20',
             'birthday' => 'required',
             'address' => 'required',
             'phone' => 'required',
         ]);
-        $request['password'] = bcrypt($request['password'] );
+        // $request['password'] = bcrypt($request['password'] );
 
         $customer = Customers::find($id);
 
         $customer->customer_name = $request->customer_name;
         $customer->email = $request->email;
-        $customer->password = $request->password;
+        // $customer->password = $request->password;
         $customer->birthday = $request->birthday;
         $customer->address = $request->address;
         $customer->phone = $request->phone;

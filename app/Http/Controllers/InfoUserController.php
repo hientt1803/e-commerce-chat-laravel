@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,5 +77,33 @@ class InfoUserController extends Controller
         $user->update();
 
         return redirect('/admin/user-profile')->with('success', 'Profile updated successfully');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'customer_name' => 'required|string|max:50',
+            'email' => 'required|email|max:50',
+            'birthday' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+        ]);
+
+        // dd($request);
+
+        $customer = Customers::find($id);
+
+        $customer->customer_name = $request->customer_name;
+        $customer->email = $request->email;
+        $customer->birthday = $request->birthday;
+        $customer->address = $request->address;
+        $customer->phone = $request->phone;
+        $customer->status = true;
+
+        $customer->update();
+
+        session(['customer' => $customer]);
+
+        return redirect('/user/profile')->with('toasmg', 'Cập nhật Tài khoản thành công');
     }
 }

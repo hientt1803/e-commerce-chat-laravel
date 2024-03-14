@@ -40,7 +40,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="password" class="form-control-label">Mật khẩu</label>
                                     <input class="form-control" type="password" value="{{$customer->password}}" id="password" name="password">
@@ -48,7 +48,7 @@
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="birthday" class="form-control-label">Ngày sinh</label>

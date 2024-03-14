@@ -154,8 +154,15 @@ Route::controller(CheckoutController::class)->group(function () {
 });
 
 Route::controller(CheckoutHistoryController::class)->group(function () {
-	Route::get('/order-history', 'index')->name('checkout-history');
+	Route::get('/user/order-history', 'index')->name('checkout-history');
 });
+Route::put('/user/order-history/{id}', [CheckoutHistoryController::class, 'updateOrderStatus']);
+Route::delete('/user/order-history/{id}', [CheckoutHistoryController::class, 'deleteOrder']);
+
+Route::get('/user/profile', function () {
+	return view('client.navigation.profile.index');
+})->name('profile-user');
+Route::put('/user/user-profile/{id}', [InfoUserController::class, 'update']);
 
 Route::get('/contact', function () {
 	return view('client.navigation.contact.index');

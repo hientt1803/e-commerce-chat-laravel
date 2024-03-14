@@ -1,4 +1,4 @@
-@extends('client.layouts.user_type.guest')
+@extends('client.layouts.user_type.auth')
 
 @section('content')
 
@@ -18,85 +18,98 @@
 <!-- Breadcrumb End -->
 
 <!-- Checkout Section Begin -->
-<section class="order-history spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="order-history__content">
-                    <div class="card mb-4 mx-4">
-                        <div class="card-body px-0 pt-0 pb-2">
-                            <div class="table-responsive p-0">
-                                <table class="table align-items-center mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Mã đơn hàng</th>
-                                            <th>Ngày đặt hàng</th>
-                                            <th>Tình trạng</th>
-                                            <th>Tổng tiền</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($orderHistory as $index => $order)
-                                        <tr>
-                                            <td class="cart__price">
-                                                <span class="text-dark">
-                                                    {{$index+1}}
-                                                </span>
-                                            </td>
-                                            <td class="cart__price">
-                                                <span class="text-dark">
-                                                    #{{$order->order_id . str_pad(random_int(0, 9999999999), 5, '0', STR_PAD_LEFT)}}
-                                                </span>
-                                            </td>
-                                            <td class="cart__price">
-                                                <span class="text-dark">{{$order->create_at}}</span>
-                                            </td>
-                                            <td class="cart__price">
-                                                @switch($order->status)
-                                                @case('đang chờ')
-                                                <span class="badge bg-warning p-2 text-dark">Đang chờ</span>
-                                                @break
-                                                @case('đang giao')
-                                                <span class="badge bg-primary p-2 text-white">Đang giao</span>
-                                                @break
-                                                @case('đã giao')
-                                                <span class="badge bg-success p-2 text-white">Đã giao</span>
-                                                @break
-                                                @case('đã hủy')
-                                                <span class="badge bg-danger p-2 text-white">Đã hủy</span>
-                                                @break
-                                                @default
-                                                <span class="badge bg-warning p-2 text-dark">Đang chờ</span>
-                                                @endswitch
-                                            </td>
-                                            <td class="cart__total">{{number_format($order->total_price, 0, ',', '.')}} VND</td>
-                                            <td class="cart__total">
-                                                @if($order->status == 'đang chờ')
-                                                <button class="site-btn rounded-0 w-100">
-                                                    Hủy đơn hàng
-                                                </button>
-                                                @elseif($order->status=='đang giao')
-                                                <button class="btn btn-success w-100">
-                                                    Xác nhận đã nhận
-                                                </button>
-                                                @elseif($order->status=='đã giao')
-                                                <button class="btn btn-secondary disabled w-100" style="cursor: not-allowed;">
-                                                    Đã giao
-                                                </button>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+<section class="mb-5">
+    <div class="row">
+        @foreach($orderHistory as $index => $order)
+        <div class="col-lg-12 mb-5 shadow-sm p-3">
+            <div class="d-flex justify-content-between">
+                <div class="d-flex" style="gap: 5px;">
+                    <span class="badge bg-warning p-2 text-dark">Yêu thích</span>
+                    <span class="text-dark font-weight-bold text-truncate" style="max-width: 150px;">{{$order->orderDetail[0]->product->product_name}}</span>
+                </div>
+                <div class="d-flex align-items-center" style="gap: 3px;">
+                    @switch($order->status)
+                    @case('đang chờ')
+                    <i class="fa fa-truck text-warning" aria-hidden="true"></i>
+                    <span class="text-warning">Đơn hàng của bạn đang chờ xác nhận</span>
+                    @break
+                    @case('đang giao')
+                    <i class="fa fa-truck text-primary" aria-hidden="true"></i>
+                    <span class="text-primary">Đơn hàng của bạn đang được vận chuyển</span>
+                    @break
+                    @case('đã giao')
+                    <i class="fa fa-truck text-success" aria-hidden="true"></i>
+                    <span class="text-success">Đơn hàng của bạn đã giao thành công</span>
+                    @break
+                    @case('đã hủy')
+                    <i class="fa fa-truck text-danger" aria-hidden="true"></i>
+                    <span class="text-danger">Đơn hàng của bạn đã đưuọc hủy</span>
+                    @break
+                    @default
+                    <i class="fa fa-truck text-warning" aria-hidden="true"></i>
+                    <span class="text-warning">Đơn hàng của bạn đang chờ xác nhận</span>
+                    @endswitch
                 </div>
             </div>
+            <hr class="dropdown-divider">
+            <div class="my-2">
+                @if($order->orderDetail && $order->orderDetail->count() > 0)
+                @foreach($order->orderDetail as $i => $orderDetail)
+                <div class="row">
+                    <div class="col-2 mb-2">
+                        <img src="{{asset('/storage/' . $orderDetail->product->image)}}" alt="" width="150" height="150">
+                    </div>
+                    <div class="col-8 d-flex flex-column" style="gap: 5px;">
+                        <span class="text-dark font-weight-bold">
+                            {{$orderDetail->product->product_name}}
+                        </span>
+                        <span class="text-muted">
+                            Số lượng: {{$orderDetail->quantity}}
+                        </span>
+                    </div>
+                    <div class="col-2">
+                        <span class="text-danger d-flex align-items-center">{{number_format($orderDetail->product->price, 0, ',', '.')}} VND</span>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+            <hr class="dropdown-divider">
+            <div class="my-2">
+                Thành tiền: <span class="fs-4 text-danger">{{number_format($order->total_price, 0, ',', '.')}} VND</span>
+            </div>
+            <div class="mt-3 d-flex justify-content-between ">
+                <span>Đơn hàng được khỏi tạo ngày: <span class="text-dark">{{$order->create_at}}</span>.</span>
+                <form action="{{url('/user/order-history/' . $order->order_id)}}" method="POST">
+                    @csrf
+                    @if($order->status=='đang giao')
+                    @method('PUT')
+                    @else
+                    @method('DELETE')
+                    @endif
+                    <div class="d-flex" style="gap: 3px;">
+                        @if($order->status == 'đang chờ')
+                        <button class="site-btn rounded-0 w-100">
+                            Hủy đơn hàng
+                        </button>
+                        @elseif($order->status=='đang giao')
+                        <button class="btn btn-success w-100">
+                            Xác nhận đã nhận
+                        </button>
+                        @elseif($order->status=='đã giao')
+                        <button class="btn btn-secondary disabled w-100" style="cursor: not-allowed;">
+                            Đã giao
+                        </button>
+                        @endif
+                    </div>
+                </form>
+            </div>
         </div>
+        @endforeach
+        <div>
+            {{$orderHistory->links()}}
+        </div>
+    </div>
 </section>
 <!-- Checkout Section End -->
 
