@@ -19,6 +19,6 @@ trait OrderRelationship
 
     public function orderDetail(): HasMany
     {
-        return $this->hasMany(Order_detail::class, 'order_detail_id');
+        return $this->hasMany(Order_detail::class, 'order_id');
     }
 }

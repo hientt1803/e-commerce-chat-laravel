@@ -62,7 +62,7 @@ class OrderController extends Controller
         $order = Order::find($id);
 
         // $order->status = 'đang giao';
-        $order->status = 'đã giao';
+        $order->status = 'đang giao';
 
         $order->update();
 

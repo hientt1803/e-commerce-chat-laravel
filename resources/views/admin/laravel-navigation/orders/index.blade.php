@@ -104,8 +104,11 @@
                                             @case('đang chờ')
                                             <span class="badge bg-warning text-dark">Đang chờ</span>
                                             @break
+                                            @case('đang giao')
+                                            <span class="badge bg-primary text-white">Đang giao</span>
+                                            @break
                                             @case('đã giao')
-                                            <span class="badge bg-primary">Đã giao</span>
+                                            <span class="badge bg-success">Đã giao</span>
                                             @break
                                             @case('đã hủy')
                                             <span class="badge bg-danger">Đã hủy</span>
@@ -141,6 +144,8 @@
                                                                     @switch($order->status)
                                                                     @case('đang chờ')Đang chờ xác nhận
                                                                     @break
+                                                                    @case('đang giao')Đang giao
+                                                                    @break
                                                                     @case('đã giao')
                                                                     Đơn hàng đã giao
                                                                     @break
@@ -166,8 +171,11 @@
                                                                     @case('đang chờ')
                                                                     <span class="badge bg-warning text-dark">Đang chờ</span>
                                                                     @break
+                                                                    @case('đang giao')
+                                                                    <span class="badge bg-primary">Đang giao</span>
+                                                                    @break
                                                                     @case('đã giao')
-                                                                    <span class="badge bg-primary">Đã giao</span>
+                                                                    <span class="badge bg-success">Đã giao</span>
                                                                     @break
                                                                     @case('đã hủy')
                                                                     <span class="badge bg-danger">Đã hủy</span>
@@ -272,7 +280,7 @@
                                                             <form method="POST" action="{{ url('admin/orders-management/update') . '/' . $order->order_id}}">
                                                                 @csrf
                                                                 @method('PUT')
-                                                                <button type="submit" class="btn btn-primary" {{ $order->status == 'đã hủy' || $order->status == 'đã giao' ? 'disabled' : null }}>Xác nhận giao đơn hàng</button>
+                                                                <button type="submit" class="btn btn-primary" {{ $order->status == 'đã hủy' || $order->status == 'đã giao' || $order->status == 'đang giao' ? 'disabled' : null }}>Xác nhận giao đơn hàng</button>
                                                             </form>
                                                         </div>
                                                     </div>
