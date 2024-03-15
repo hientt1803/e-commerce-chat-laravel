@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class CustomersController extends Controller
 {
@@ -13,7 +14,7 @@ class CustomersController extends Controller
     {
         $data['customers'] = Customers::orderBy('status', 'desc')->orderBy('customer_id', 'desc')->paginate(10);
         return view('admin.laravel-navigation.customers.index', $data);
-    } 
+    }
 
     public function create()
     {
@@ -32,12 +33,11 @@ class CustomersController extends Controller
             'address' => 'required',
             'phone' => 'required',
         ]);
-        $request['password'] = bcrypt($request['password'] );
 
         $customer = new Customers;
         $customer->customer_name = $request->customer_name;
         $customer->email = $request->email;
-        $customer->password = $request->password;
+        $customer->password = Hash::make($request->password);
         $customer->birthday = $request->birthday;
         $customer->address = $request->address;
         $customer->phone = $request->phone;
@@ -53,7 +53,7 @@ class CustomersController extends Controller
      */
     public function show(Customers $customer)
     {
-       //
+        //
     }
 
     /**

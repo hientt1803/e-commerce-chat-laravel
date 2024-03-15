@@ -52,8 +52,9 @@ class CartDetailController extends Controller
             'quantity' => 'required',
         ]);
 
-        if (!session('customer')) {
-            return redirect('/shop/product-detail/' . $request->product_id)->with('message', 'Vui lòng đăng nhập!');
+        $user = session('customer');
+        if (!$user) {
+            return redirect('login')->with('success', 'Vui lòng đăng nhập!');
         }
 
         $customer = Customers::where('customer_id', session('customer')->customer_id)->with('carts')->first();

@@ -41,6 +41,17 @@
     <link rel="stylesheet" href=" {{asset('assets/client/css/custom.css')}}" type="text/css">
 </head>
 
+<style>
+    .customer-search-input input {
+        width: 500px;
+        font-size: 40px;
+        border: none;
+        border-bottom: 2px solid #dddddd;
+        background: 0 0;
+        color: #999;
+    }
+</style>
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -98,14 +109,16 @@
     @endguest
 
     <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
+    <form action="{{ route('shopSearch') }}" method="GET">
+        <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch">+</div>
+                <div class="customer-search-input">
+                    <input type="text" id="search-input" name="search" placeholder="Search here.....">
+                </div>
+            </div>
         </div>
-    </div>
+    </form>
     <!-- Search End -->
 
     <!-- Js Plugins -->

@@ -94,7 +94,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $user->address }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0 text-truncate" style="max-width: 100px;">{{ $user->address }}</p>
                                         </div>
                                     </td>
                                     <td>

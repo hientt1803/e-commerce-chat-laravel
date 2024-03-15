@@ -139,6 +139,7 @@ Route::controller(ShopController::class)->group(function () {
 	Route::get('/shop/product-detail/{id}', 'show')->name('productDetail');
 	Route::get('/shop/category/{id}', 'filterByCategory')->name('filterByCategory');
 	Route::get('/shop/filter-by-price', 'filterByPrice')->name('filterByPrice');
+	Route::get('/shop/search', 'search')->name('shopSearch');
 });
 
 Route::controller(CartDetailController::class)->group(function () {

@@ -28,17 +28,16 @@
                 <div class="header__right d-flex align-items-center gap-2">
                     @if(session('customer'))
                     <div class="dropdown">
-                        <a class="btn btn-transparent dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="btn btn-transparent dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{session('customer')->customer_name}}
                         </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
-                            <li><a class="dropdown-item" href="#">Lịch sử đặt hàng</a></li>
-                            <li><a class="dropdown-item" href="#">Giỏ hàng</a></li>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="/user/profile">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="/user/order-history">Lịch sử đặt hàng</a></li>
+                            <li><a class="dropdown-item" href="/cart">Giỏ hàng</a></li>
                             <hr>
                             <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
-                        </ul>
+                        </div>
                     </div>
                     @else
                     <div class="header__right__auth">

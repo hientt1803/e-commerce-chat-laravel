@@ -3,7 +3,7 @@
 @section('content')
 
 <div>
-    <form action="/admin/user-profile" method="POST" role="form text-left">
+    <form action="/admin/user-profile" method="POST" enctype="multipart/form-data" role="form text-left">
         @csrf
         <div class="container-fluid">
             <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
@@ -14,8 +14,8 @@
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
                             <img id="userImage" src="{{asset('storage/'. auth()->user()->image)}}" alt="..." class="w-100 border-radius-lg shadow-sm">
-                            <input type="file" id="imageInput" name="image" style="display: none;">
-                            <a href="javascript:;" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2">
+                            <input type="file" id="imageInput" name="image" style="visibility: hidden;">
+                            <a href="javascript:;" id="editImage" class="btn btn-sm btn-icon-only bg-gradient-light position-absolute bottom-0 end-0 mb-n2 me-n2">
                                 <i class="fa fa-pen top-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Image"></i>
                             </a>
                         </div>
@@ -25,6 +25,10 @@
                     <script>
                         $(document).ready(function() {
                             $('#userImage').click(function() {
+                                $('#imageInput').click();
+                            });
+                            
+                            $('#editImage').click(function() {
                                 $('#imageInput').click();
                             });
 
@@ -37,18 +41,6 @@
                                 reader.readAsDataURL(file);
                             });
                         });
-
-                        // $('#imageInput').change(function() {
-                        //     var file = this.files[0];
-                        //     var reader = new FileReader();
-                        //     reader.onloadend = function() {
-                        //         $('#userImage').attr('src', reader.result);
-                        //     }
-                        //     reader.readAsDataURL(file);
-
-                        //     // Auto submit form after image change
-                        //     $('form').submit();
-                        // });
                     </script>
                     <div class="col-auto my-auto">
                         <div class="h-100">
@@ -173,7 +165,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="user-email" class="form-control-label">{{ __('Mật khẩu') }}</label>
                                 <div class="@error('password')border border-danger rounded-3 @enderror">
@@ -183,7 +175,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="gender" class="form-control-label">Giới tính</label>
@@ -198,8 +190,6 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone" class="form-control-label">{{ __('SĐT') }}</label>
@@ -211,7 +201,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="row">
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone" class="form-control-label">{{ __('SĐT') }}</label>
+                                <div class="@error('user.phone')border border-danger rounded-3 @enderror">
+                                    <input class="form-control" type="tel" placeholder="40770888444" id="number" name="phone" value="{{ auth()->user()->phone }}">
+                                    @error('phone')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label for="role" class="form-control-label">Phân quyền</label>
                                 <div>
@@ -224,7 +227,7 @@
                                 <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                 @enderror
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- <div class="row">
                         <div class="col-md-6">
@@ -243,7 +246,7 @@
                     <div class="form-group">
                         <label for="address">{{ 'Địa chỉ' }}</label>
                         <div class="@error('address')border border-danger rounded-3 @enderror">
-                            <textarea class="form-control" id="about" rows="3" placeholder="Say something about yourself" name="address">{{ auth()->user()->address }}</textarea>
+                            <textarea class="form-control" id="about" rows="3" placeholder="Vài điều về bản thân" name="address">{{ auth()->user()->address }}</textarea>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">

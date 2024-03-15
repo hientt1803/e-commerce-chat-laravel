@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                <div class="instagram__item set-bg" data-setbg="{{asset('assets/client/img/instagram/insta-1.jpg')}}">
+                <div class="instagram__item set-bg" data-setbg="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8SXBob25lfGVufDB8fDB8fHww">
                     <div class="instagram__text">
                         <i class="fa fa-instagram"></i>
                         <a href="#">@ augentern_shop</a>
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                <div class="instagram__item set-bg" data-setbg="{{asset('assets/client/img/instagram/insta-2.jpg')}}">
+                <div class="instagram__item set-bg" data-setbg="https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8SXBob25lfGVufDB8fDB8fHww">
                     <div class="instagram__text">
                         <i class="fa fa-instagram"></i>
                         <a href="#">@ augentern_shop</a>
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                <div class="instagram__item set-bg" data-setbg="{{asset('assets/client/img/instagram/insta-3.jpg')}}">
+                <div class="instagram__item set-bg" data-setbg="https://images.unsplash.com/photo-1550029402-226115b7c579?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fElwaG9uZXxlbnwwfHwwfHx8MA%3D%3D">
                     <div class="instagram__text">
                         <i class="fa fa-instagram"></i>
                         <a href="#">@ augentern_shop</a>
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                <div class="instagram__item set-bg" data-setbg="{{asset('assets/client/img/instagram/insta-4.jpg')}}">
+                <div class="instagram__item set-bg" data-setbg="https://images.unsplash.com/photo-1519923834699-ef0b7cde4712?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fElwaG9uZXxlbnwwfHwwfHx8MA%3D%3D">
                     <div class="instagram__text">
                         <i class="fa fa-instagram"></i>
                         <a href="#">@ augentern_shop</a>
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                <div class="instagram__item set-bg" data-setbg="{{asset('assets/client/img/instagram/insta-5.jpg')}}">
+                <div class="instagram__item set-bg" data-setbg="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fElwaG9uZXxlbnwwfHwwfHx8MA%3D%3D">
                     <div class="instagram__text">
                         <i class="fa fa-instagram"></i>
                         <a href="#">@ augentern_shop</a>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 p-0">
-                <div class="instagram__item set-bg" data-setbg="{{asset('assets/client/img/instagram/insta-6.jpg')}}">
+                <div class="instagram__item set-bg" data-setbg="https://images.unsplash.com/photo-1627542557169-5ed71c66ed85?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBob25lJTIwbW9ja3VwfGVufDB8fDB8fHww">
                     <div class="instagram__text">
                         <i class="fa fa-instagram"></i>
                         <a href="#">@ augentern_shop</a>

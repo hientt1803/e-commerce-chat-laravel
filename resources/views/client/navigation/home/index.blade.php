@@ -112,6 +112,7 @@
         </div>
         <div class="row property__gallery">
             @foreach($productNews as $index =>$product)
+            @if($product->quantity > 0)
             <div class="col-lg-3 col-md-4 col-sm-6 mix {{$product->categories->category_name}}">
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="{{asset('storage/'.$product->image)}}" style="background-size: contain; background-position: center center;">
@@ -149,6 +150,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
@@ -199,10 +201,13 @@
                         <h4>Hot Trend</h4>
                     </div>
                     @foreach($hotTrend as $index => $trend)
+                    @if($trend->quantity > 0)
                     <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
-                        </div>
+                        <a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">
+                            <div class="trend__item__pic">
+                                <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                            </div>
+                        </a>
                         <div class="trend__item__text">
                             <h6><a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">{{$trend->product_name}}</a></h6>
                             <div class="rating">
@@ -219,6 +224,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -227,11 +233,14 @@
                     <div class="section-title">
                         <h4>Bán chạy nhất</h4>
                     </div>
-                    @foreach($hotTrend as $index => $trend)
+                    @foreach($bestSeller as $index => $trend)
+                    @if($trend->quantity > 0)
                     <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
-                        </div>
+                        <a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">
+                            <div class="trend__item__pic">
+                                <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                            </div>
+                        </a>
                         <div class="trend__item__text">
                             <h6><a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">{{$trend->product_name}}</a></h6>
                             <div class="rating">
@@ -248,6 +257,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -256,11 +266,14 @@
                     <div class="section-title">
                         <h4>Vừa cập nhật</h4>
                     </div>
-                    @foreach($hotTrend as $index => $trend)
+                    @foreach($productFilter as $index => $trend)
+                    @if($trend->quantity > 0)
                     <div class="trend__item">
-                        <div class="trend__item__pic">
-                            <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: fit-content; height: 100px; object-fit: cover;">
-                        </div>
+                        <a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">
+                            <div class="trend__item__pic">
+                                <img src="{{asset('storage/'.$trend->image)}}" alt="" style="width: 100px; height: 100px; object-fit: cover;">
+                            </div>
+                        </a>
                         <div class="trend__item__text">
                             <h6><a href="{{url('/shop/product-detail/'.$trend->product_id)}}" class="text-dark">{{$trend->product_name}}</a></h6>
                             <div class="rating">
@@ -277,6 +290,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
             </div>

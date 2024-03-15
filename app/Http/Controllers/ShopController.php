@@ -45,4 +45,38 @@ class ShopController extends Controller
 
         return view('client.navigation.shop.index', compact('products', 'categories'));
     }
+
+    public function search(Request $request)
+    {
+        $query = Products::query();
+
+        if ($request->has('search') && $request->has('sort')) {
+            $sortOrder = $request->sort == 'asc' ? 'asc' : 'desc';
+            $query->where('product_name', 'like', '%' . $request->search . '%')->orderBy('price', $sortOrder);
+
+            $categories = Categories::all();
+            $products = $query->paginate(10);
+
+            session(['search' => $request->search]);
+            // dd(session('search'));
+
+            return view('client.navigation.shop.index', compact('products', 'categories'));
+        }
+
+        if ($request->has('search')) {
+            $query->where('product_name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->has('sort')) {
+            $sortOrder = $request->sort == 'asc' ? 'asc' : 'desc';
+            $query->orderBy('price', $sortOrder);
+        }
+
+        $categories = Categories::all();
+        $products = $query->paginate(10);
+        session(['search' => $request->search]);
+        // dd(session('search'));
+
+        return view('client.navigation.shop.index', compact('products', 'categories'));
+    }
 }

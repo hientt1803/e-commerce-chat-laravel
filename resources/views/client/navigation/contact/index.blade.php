@@ -8,8 +8,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
-                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                    <span>Contact</span>
+                    <a href="/"><i class="fa fa-home"></i> Trang chủ</a>
+                    <span>Liên hệ</span>
                 </div>
             </div>
         </div>
@@ -24,24 +24,24 @@
             <div class="col-lg-6 col-md-6">
                 <div class="contact__content">
                     <div class="contact__address">
-                        <h5>Contact info</h5>
+                        <h5>Thông tin liên hệ</h5>
                         <ul>
                             <li>
-                                <h6><i class="fa fa-map-marker"></i> Address</h6>
-                                <p>160 Pennsylvania Ave NW, Washington, Castle, PA 16101-5161</p>
+                                <h6><i class="fa fa-map-marker"></i> Địa chỉ</h6>
+                                <p>91B, Nguyễn Văn Linh, Ninh Kiều, Cần Thơ</p>
                             </li>
                             <li>
-                                <h6><i class="fa fa-phone"></i> Phone</h6>
-                                <p><span>125-711-811</span><span>125-668-886</span></p>
+                                <h6><i class="fa fa-phone"></i> Số điện thoại</h6>
+                                <p><span>+84</span><span>489427628496</span></p>
                             </li>
                             <li>
-                                <h6><i class="fa fa-headphones"></i> Support</h6>
+                                <h6><i class="fa fa-headphones"></i> Hỗ trợ</h6>
                                 <p>Support.photography@gmail.com</p>
                             </li>
                         </ul>
                     </div>
                     <div class="contact__form">
-                        <h5>SEND MESSAGE</h5>
+                        <h5>Nhắn tin cho tôi</h5>
                         <form action="#">
                             <input type="text" placeholder="Name">
                             <input type="text" placeholder="Email">

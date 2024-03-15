@@ -68,7 +68,7 @@
                                         </span>
                                     </td>
                                     <td class="cart__product__item">
-                                        <img src="{{asset('/storage/'.$cart->product->image)}}" style="width: 250px;height:200px;" alt="">
+                                        <img src="{{asset('/storage/'.$cart->product->image)}}" style="width: 200px;height:200px;" alt="">
                                         <div class="cart__product__item__title">
                                             <h6>{{$cart->product->product_name}}</h6>
                                             <div class="rating">
@@ -141,7 +141,7 @@
 
                     <script>
                         function updateCartItem() {
-                            alert('run?')
+                            // alert('run?')
                             var cartItems = [];
                             $('.cart-item-quantity').each(function() {
                                 var cartId = $(this).data('cart-id');

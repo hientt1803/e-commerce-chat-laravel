@@ -88,7 +88,7 @@
                         <span>( 138 reviews )</span>
                     </div>
                     <div class="product__details__price">{{number_format($product->price, 0, ',', '.')}} VND <span>{{number_format($product->price + 2000000, 0, ',', '.')}} VND</span></div>
-                    <p>{{ Str::limit($product->description, 100) }}.</p>
+                    <p>{{ Str::limit($product->description, 250) }}.</p>
                     <form action="/cart-detail" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('POST')
@@ -96,7 +96,7 @@
                             <div class="quantity">
                                 <span>Số lượng:</span>
                                 <div class="pro-qty">
-                                    <input type="text" value="1" name="quantity">
+                                    <input type="text" value="1" name="quantity" @if($product->quantity <= 0) disabled @endif>
                                 </div>
                             </div>
                             <input type="hidden" value="{{$product->product_id}}" name="product_id">
@@ -111,6 +111,11 @@
                         <ul>
                             <li>
                                 <span>Còn lại:</span>
+                                @if($product->quantity == 0)
+                                <div class="stock__checkbox text-danger">
+                                    Hết hàng
+                                </div>
+                                @else
                                 <div class="stock__checkbox">
                                     <label for="stockin">
                                         {{$product->quantity}}
@@ -118,6 +123,7 @@
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
+                                @endif
                             </li>
                             <li>
                                 <span>Khuyến mãi:</span>
@@ -169,6 +175,7 @@
             </h2>
             @else
             @foreach($relatedProducts as $index => $product)
+            @if($product->quantity > 0)
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="{{asset('/storage/' . $product->image)}}">
@@ -208,6 +215,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
             @endif
             <div class="col-12 mx-auto">

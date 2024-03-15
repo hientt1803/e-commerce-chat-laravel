@@ -99,6 +99,27 @@
                 </div>
             </div>
             <div class="col-lg-9 col-md-9">
+                <div class="row mb-4">
+                    <div class="col-lg-4">
+                        <p>Hiển thị {{ $products->count() }} trên tổng số {{ $products->total() }} sản phẩm <span style="color: red;">(*)</span></p>
+                    </div>
+                    <div class="col-lg-8">
+                        <div>
+                            <form action="{{ route('shopSearch') }}" method="GET" class="d-flex justify-content-end mr-2">
+                                <select class="custom-select mr-2 w-auto" name="sort" onchange="this.form.submit()">
+                                    <option value="asc">Giá: Thấp đến Cao</option>
+                                    <option value="desc">Giá: Cao đến Thấp</option>
+                                </select>
+                                <div class="input-group">
+                                    <input type="text" class="form-control w-auto" value="{{session('search')}}" style="min-width: 200px;" placeholder="Tìm kiếm sản phẩm..." name="search">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">Tìm kiếm</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     @if($products->count()==0)
                     <h2 class="text-center fs-4 mx-auto font-weight-bold w-75">
@@ -106,6 +127,7 @@
                     </h2>
                     @else
                     @foreach($products as $index => $product)
+                    @if($product->quantity > 0)
                     <div class="col-lg-4 col-md-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg" data-setbg="{{asset('storage/'.$product->image)}}">
@@ -146,6 +168,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                     @endif
                     <div class="col-lg-12 text-center">

@@ -51,28 +51,27 @@ class InfoUserController extends Controller
         $request->validate([
             'fullname' => 'required|string|max:255',
             'email' => 'required',
-            'password' => 'required',
-            'address' => '',
+            'address' => 'string',
             'phone' => 'required|string',
             'gender' => 'required',
-            'role' => 'required'
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
+
+        dd($request);
 
         $user = User::find(Auth()->user()->user_id);
         $user->fullname = $request->fullname;
         $user->email = $request->email;
-        $user->password = Hash::make($request->password);
         $user->address = $request->address;
         $user->phone = $request->phone;
         $user->gender = $request->gender;
-        $user->role = $request->role;
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('users_images', 'public');
             $user->image = $imagePath;
         }
 
-        // dd($user);
+        dd($user);
 
         $user->update();
 
