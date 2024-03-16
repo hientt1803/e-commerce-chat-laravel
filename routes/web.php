@@ -7,6 +7,7 @@ use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
@@ -45,9 +46,8 @@ use Illuminate\Support\Facades\Route;
 // Route::put('/admin/categories/{category}', [CategoriesController::class, 'update'])->name('admin.categories.update');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('admin/dashboard', function () {
-		return view('admin.dashboard');
-	})->name('dashboard');
+	Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+	Route::post('admin/filter-statistical', [DashboardController::class, 'filterStatistical']);
 
 	Route::get('admin/billing', function () {
 		return view('admin.billing');

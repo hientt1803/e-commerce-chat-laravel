@@ -11,8 +11,7 @@
               <div class="numbers">
                 <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Money</p>
                 <h5 class="font-weight-bolder mb-0">
-                  $53,000
-                  <span class="text-success text-sm font-weight-bolder">+55%</span>
+                  <span class="text-success text-sm font-weight-bolder"> {{ number_format($revenueToday) }} VND</span>
                 </h5>
               </div>
             </div>
@@ -31,10 +30,9 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Users</p>
                 <h5 class="font-weight-bolder mb-0">
-                  2,300
-                  <span class="text-success text-sm font-weight-bolder">+3%</span>
+                  {{ $totalUsers }}
                 </h5>
               </div>
             </div>
@@ -53,10 +51,9 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">New Clients</p>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Clients</p>
                 <h5 class="font-weight-bolder mb-0">
-                  +3,462
-                  <span class="text-danger text-sm font-weight-bolder">-2%</span>
+                  {{ $totalCustomers }}
                 </h5>
               </div>
             </div>
@@ -75,10 +72,9 @@
           <div class="row">
             <div class="col-8">
               <div class="numbers">
-                <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
+                <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Products</p>
                 <h5 class="font-weight-bolder mb-0">
-                  $103,430
-                  <span class="text-success text-sm font-weight-bolder">+5%</span>
+                  {{ $totalProducts }}
                 </h5>
               </div>
             </div>
@@ -93,6 +89,29 @@
     </div>
   </div>
   <div class="row mt-4">
+    <div class="col-lg-7">
+      <form action="{{ url('admin/filter-statistical') }}" method="POST">
+        @csrf
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date">
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Filter</button>
+      </form>
+    </div>
+    <div class="col-lg-12">
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
     <div class="col-lg-7 mb-lg-0 mb-4">
       <div class="card">
         <div class="card-body p-3">
@@ -790,5 +809,62 @@
       });
     }
   </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script>
+
+    var data = {!! json_encode($filtered_data) !!};
+    console.log(data);
+
+    var dates = data.map(function(item) {
+        return item.date;
+    });
+
+    var totalOrders = data.map(function(item) {
+        return item.total_orders;
+    });
+
+    var totalRevenue = data.map(function(item) {
+        return item.total_revenue;
+    });
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Total Orders',
+                data: totalOrders,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Total Revenue',
+                data: totalRevenue,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+            title: {
+                display: true,
+                text: 'REVENUE STATISTICS CHART',
+                font: {
+                    size: 18,
+                    color: 'black'
+                }
+            }
+          }
+        }
+    });
+</script>
 @endpush
 
