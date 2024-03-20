@@ -76,3 +76,34 @@
         opacity: 0;
     }
 }
+
+.help-area {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: transparent;
+    z-index: 1000000;
+}
+
+.card-help {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.card-help .card-help-content {
+    min-width: 450px;
+    display: none;
+}
+
+.card-help .card-help-content>* {
+    display: none;
+}
+
+.card-help.expanded {
+    max-height: 1000px;
+}
+
+.card-help.expanded .card-help-content>* {
+    display: block;
+}

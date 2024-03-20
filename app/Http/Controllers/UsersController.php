@@ -17,6 +17,21 @@ class UsersController extends Controller
         return view('admin.laravel-navigation.users.index', $data);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $users = User::query();
+
+        if ($search) {
+            $users = $users->where('fullname', 'LIKE', "%{$search}%");
+        }
+
+        $users = $users->paginate(10);
+
+        return view('admin.laravel-navigation.users.index', compact('users'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

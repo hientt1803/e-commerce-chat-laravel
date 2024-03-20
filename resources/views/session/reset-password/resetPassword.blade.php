@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="password">New Password</label>
+                                <label for="password">Mật khẩu mới</label>
                                 <div class="">
                                     <input id="password" name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                                     @error('password')
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div>
-                                <label for="password_confirmation">Confirm Password</label>
+                                <label for="password_confirmation">Xác nhận mật khẩu</label>
                                 <div class="">
                                     <input id="password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Password-confirmation" aria-label="Password-confirmation" aria-describedby="Password-addon">
                                     @error('password')
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Recover your password</button>
+                                <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0">Đổi mật khẩu</button>
                             </div>
                         </form>
                     </div>

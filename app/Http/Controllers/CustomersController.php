@@ -16,6 +16,21 @@ class CustomersController extends Controller
         return view('admin.laravel-navigation.customers.index', $data);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $customers = Customers::query();
+
+        if ($search) {
+            $customers = $customers->where('customer_name', 'LIKE', "%{$search}%");
+        }
+
+        $customers = $customers->paginate(10);
+
+        return view('admin.laravel-navigation.customers.index', compact('customers'));
+    }
+
     public function create()
     {
         $data['customers'] = Customers::where('status', 1)->get();

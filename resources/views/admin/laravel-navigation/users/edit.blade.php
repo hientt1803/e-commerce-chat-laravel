@@ -23,20 +23,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="fullname" class="form-control-label">Họ và tên</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror">
+                                    <div class="@error('fullname')border border-danger rounded-3 @enderror">
                                         <input class="form-control" type="text" value="{{$user->fullname}}" placeholder="Họ và tên" id="fullname" name="fullname">
                                         @error('fullname')
-                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="image" class="form-control-label">Hình ảnh</label>
-                                    <div class="@error('user.name')border border-danger rounded-3 @enderror">
-                                        <input class="form-control" type="file" value="storage/{{$user->image}}" placeholder="Choose users image" id="image" name="image">
-                                        @error('image')
                                         <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                         @enderror
                                     </div>
@@ -104,6 +93,23 @@
                                     @error('role')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="image" class="form-control-label">Hình ảnh</label>
+                                    <div class="@error('image')border border-danger rounded-3 @enderror">
+                                        <input class="form-control" type="file" placeholder="Choose product image" id="image" name="image">
+                                        @error('image')
+                                        <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                        @enderror
+                                        <!-- Display current product image -->
+                                        <div class="my-2 bg-white p-2">
+                                            @if($user->image)
+                                            <img src="{{ asset('storage/'.$user->image) }}" alt="Current Product Image" style="width: 200px; height: 200px;">
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

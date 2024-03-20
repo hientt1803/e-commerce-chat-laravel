@@ -10,21 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class MessagesController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -37,7 +22,7 @@ class MessagesController extends Controller
         $msg = new Messages;
         $msg->content = $request->content;
 
-        if (Auth::user()->role == 'admin') {
+        if (Auth::user()->role == 'admin' || Auth::user()->role == 'user') {
             $msg->sender_type = 'user';
             $msg->receiver_type = 'customer';
 
@@ -61,37 +46,5 @@ class MessagesController extends Controller
 
         // return redirect()->route('conversation-management', ['cvs_id' => $request->cvs_id]);
         return redirect('/admin/conversation-management/' . $request->cvs_id);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Messages $messages)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Messages $messages)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Messages $messages)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Messages $messages)
-    {
-        //
     }
 }

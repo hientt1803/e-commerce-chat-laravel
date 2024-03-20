@@ -14,7 +14,22 @@ class CategoriesController extends Controller
     {
         $data['categories'] = Categories::orderBy('status', 'desc')->orderBy('cat_id', 'desc')->paginate(10);
         return view('admin.laravel-navigation.categories.index', $data);
-    } 
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $categories = Categories::query();
+
+        if ($search) {
+            $categories = $categories->where('category_name', 'LIKE', "%{$search}%");
+        }
+
+        $categories = $categories->paginate(10);
+
+        return view('admin.laravel-navigation.categories.index', compact('categories'));
+    }
 
     /**
      * Show the form for creating a new resource.

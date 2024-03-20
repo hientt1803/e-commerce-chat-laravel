@@ -21,7 +21,9 @@ class SessionsController extends Controller
             'password' => 'required'
         ]);
 
-        // dd(session());
+        // dd($attributes);
+
+        $remember = request()->has('rememberMe');
 
         if (Auth::attempt($attributes)) {
             session()->regenerate();

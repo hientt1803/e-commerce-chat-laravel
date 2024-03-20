@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartDetailController;
+use App\Http\Controllers\ChatCustomerController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CheckoutHistoryController;
 use App\Http\Controllers\ConversionController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\ResetController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\BotManChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,10 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('admin.dashboard');
 	})->name('dashboard');
 
-	Route::get('admin/billing', function () {
-		return view('admin.billing');
-	})->name('billing');
-
 	Route::get('admin/user-management', function () {
 		return view('admin.laravel-navigation.user-management');
 	})->name('user-management');
@@ -46,6 +44,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// ******************* Categories route *******************
 	Route::controller(CategoriesController::class)->group(function () {
 		Route::get('admin/categories-management', 'index')->name('categories-management');
+		Route::get('admin/categories-management-search', 'search');
 		Route::get('admin/categories-management-create', 'create');
 		Route::post('admin/categories-management', 'store');
 		Route::get('admin/categories-management-edit/{id}', 'edit')->name('categories-management-edit');
@@ -56,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// ******************* Customer route *******************
 	Route::controller(CustomersController::class)->group(function () {
 		Route::get('admin/customers-management', 'index')->name('customers-management');
+		Route::get('admin/customers-management-search', 'search');
 		Route::get('admin/customers-management-create', 'create');
 		Route::post('admin/customers-management', 'store');
 		Route::get('admin/customers-management-edit/{id}', 'edit')->name('customers-management-edit');
@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// ******************* Product route *******************
 	Route::controller(ProductsController::class)->group(function () {
 		Route::get('admin/products-management', 'index')->name('products-management');
+		Route::get('admin/products-management-search', 'search');
 		Route::get('admin/products-management-create', 'create');
 		Route::post('admin/products-management', 'store');
 		Route::get('admin/products-management-edit/{id}', 'edit')->name('products-management-edit');
@@ -76,8 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// ******************* Order route *******************
 	Route::controller(OrderController::class)->group(function () {
 		Route::get('admin/orders-management', 'index')->name('orders-management');
-		// Route::post('admin/orders-management', [OrderController::class, 'store']);
-		// Route::get('admin/orders-management-edit/{id}', 'edit')->name('orders-management-edit');
+		Route::get('admin/orders-management-search', 'search');
 		Route::put('admin/orders-management/update/{id}', 'update');
 		Route::delete('admin/orders-management/delete/{id}', 'destroy');
 	});
@@ -85,6 +85,7 @@ Route::group(['middleware' => 'auth'], function () {
 	// ******************* User route *******************
 	Route::controller(UsersController::class)->group(function () {
 		Route::get('admin/users-management', 'index')->name('users-management');
+		Route::get('admin/users-management-search', 'search');
 		Route::get('admin/users-management-create', 'create');
 		Route::post('admin/users-management', 'store');
 		Route::get('admin/users-management-edit/{id}', 'edit');
@@ -172,3 +173,10 @@ Route::get('/contact', function () {
 Route::get('/blog', function () {
 	return view('client.navigation.blog.index');
 })->name('blog');
+
+// ******************* Email route *******************
+// Route::get('/send-email', [EmailController::class, 'sendEmail']);
+
+// ******************* Chat route *******************
+// Route::post('/client/message', [ChatCustomerController::class, 'sendMessage']);
+Route::match(['get', 'post'], '/botman', [BotManChatController::class, 'handle']);

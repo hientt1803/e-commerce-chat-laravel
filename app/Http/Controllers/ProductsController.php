@@ -25,6 +25,21 @@ class ProductsController extends Controller
         return view('admin.laravel-navigation.products.index', $data);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $products = Products::query();
+
+        if ($search) {
+            $products = $products->where('product_name', 'LIKE', "%{$search}%");
+        }
+
+        $products = $products->paginate(10);
+
+        return view('admin.laravel-navigation.products.index', compact('products'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

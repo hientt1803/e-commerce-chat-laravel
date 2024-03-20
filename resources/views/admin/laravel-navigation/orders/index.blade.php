@@ -30,6 +30,14 @@
                     </button>
                 </div>
                 @endif
+                <div class="ms-auto me-4 mt-3">
+                    <form action="{{ url('admin/orders-management-search') }}" method="GET">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control" style="width: 250px;" placeholder="Mã hóa đơn" name="search" value="{{ request()->search }}" aria-describedby="button-search-order">
+                            <button class="btn btn-outline-secondary mb-0" type="submit" id="button-search-order"><i class="ni ni-send"></i></button>
+                        </div>
+                    </form>
+                </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
                         <table class="table align-items-center mb-0">
@@ -75,12 +83,12 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $order->name_receiver }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0 text-truncate"  style="max-width: 130px;">{{ $order->name_receiver }}</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $order->address_receiver }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0 text-truncate"  style="max-width: 130px;">{{ $order->address_receiver }}</p>
                                         </div>
                                     </td>
                                     <td>
@@ -95,7 +103,7 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <p class="text-xs text-center font-weight-bold mb-0">{{ $order->notes }}</p>
+                                            <p class="text-xs text-center font-weight-bold mb-0 text-truncate"  style="max-width: 130px;">{{ $order->notes }}</p>
                                         </div>
                                     </td>
                                     <td class="text-center">

@@ -19,6 +19,21 @@ class OrderController extends Controller
         return view('admin.laravel-navigation.orders.index', $data);
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $orders = Order::query();
+
+        if ($search) {
+            $orders = $orders->where('order_id', 'LIKE', "%{$search}%");
+        }
+
+        $orders = $orders->paginate(10);
+
+        return view('admin.laravel-navigation.orders.index', compact('orders'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

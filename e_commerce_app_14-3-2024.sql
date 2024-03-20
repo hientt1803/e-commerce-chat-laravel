@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2024 at 04:21 PM
+-- Generation Time: Mar 14, 2024 at 11:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -40,16 +40,17 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`cart_id`, `customer_id`, `status`, `create_at`, `update_at`) VALUES
-(1, 1, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(2, 2, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(3, 3, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(4, 4, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(5, 5, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(6, 6, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(7, 7, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(8, 8, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(9, 9, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(10, 10, 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14');
+(12, 21, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(13, 22, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(14, 23, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(15, 24, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(16, 25, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(17, 26, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(18, 27, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(19, 28, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(20, 29, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(21, 30, 1, '2024-03-11 09:36:47', '2024-03-11 09:36:47'),
+(22, 31, 1, '2024-03-11 09:37:35', '2024-03-11 09:37:35');
 
 -- --------------------------------------------------------
 
@@ -65,6 +66,15 @@ CREATE TABLE `cart_details` (
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm tạo',
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cart_details`
+--
+
+INSERT INTO `cart_details` (`cart_detail_id`, `cart_id`, `product_id`, `quantity`, `create_at`, `update_at`) VALUES
+(20, 17, 4, 1, '2024-03-13 10:41:16', '2024-03-13 10:41:16'),
+(21, 17, 6, 1, '2024-03-13 10:50:24', '2024-03-13 10:50:24'),
+(22, 22, 6, 2, '2024-03-14 08:02:46', '2024-03-14 08:02:46');
 
 -- --------------------------------------------------------
 
@@ -119,9 +129,9 @@ CREATE TABLE `customers` (
   `customer_name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `birthday` date NOT NULL,
-  `address` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
+  `birthday` date DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm tạo',
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm cập nhật'
@@ -132,16 +142,17 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_name`, `email`, `password`, `birthday`, `address`, `phone`, `status`, `create_at`, `update_at`) VALUES
-(1, 'Thora Marvin', 'margaret.haley@example.com', 'J&BhE*.q7Muc`g\\G', '2005-06-23', '603 Cara Forge Suite 588\nMaefurt, ME 24514-0297', '1-432-991-0250', 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(2, 'Liana Kuvalis', 'gutmann.helene@example.net', 'W^q3,`J=)6B_&\'Q3Jg_', '1970-08-12', '202 Schmidt Gateway\nShieldsmouth, WY 60217-0587', '234-605-7316', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(3, 'Dr. Angus Fay', 'ratke.ronny@example.net', 'Z\'Tg\\aUw', '2003-10-08', '353 Nicolas Haven Suite 768\nNorth Antonetta, HI 14203-6904', '458-974-1023', 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(4, 'Retta Dietrich Jr.', 'hbernhard@example.net', 'SW904x', '1971-06-23', '662 Amaya Neck\nSouth Linnea, MS 09375-5246', '865.786.8415', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(5, 'Kyleigh Dickinson DDS', 'noelia10@example.org', '=s&foNI{n]1.v7C?K\"1', '2008-03-12', '43539 Moriah Island Apt. 962\nPacochastad, GA 59305', '386.377.7864', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(6, 'Roderick Upton', 'qhowe@example.com', 'HyZD4)d($R`', '2023-12-24', '4184 Swaniawski Plaza\nKoelpinborough, MA 30195', '+1-458-777-5117', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(7, 'Millie Aufderhar', 'esther37@example.com', 'W#i^TWAsK', '1991-08-21', '31703 Gorczany Plains\nWest Rebeccaville, VT 74544', '+16893777373', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(8, 'Dr. Montana Terry I', 'fhessel@example.com', '`SMU0Dn*%vk`t$,', '1999-02-11', '24316 Ledner Neck\nCobybury, AR 68813', '678-836-1725', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(9, 'Emory Conroy I', 'yschulist@example.net', '!]P-={dmM+3Wk[u\"C\\.', '1998-02-08', '1521 West Light Apt. 078\nLake Lue, MN 41572-2901', '313.655.9455', 0, '2024-03-09 13:59:14', '2024-03-09 13:59:14'),
-(10, 'Cayla Sawayn', 'uruecker@example.net', 'wkD{mXgr+,Bs~PH', '1977-02-04', '650 Orville Trace Suite 891\nSouth Janet, GA 30501-2064', '678-252-6214', 1, '2024-03-09 13:59:14', '2024-03-09 13:59:14');
+(21, 'Miss Thalia Prosacco', 'jbradtke@example.org', '$2y$12$lQiLwamyZP0EbdBn3BtR0ub.INJoofeBkpFEqyX/J8wH2gzucFqB6', '2003-12-27', '488 Ernesto Forks Suite 942\nDixietown, FL 37568', '229.914.1209', 0, '2024-03-11 09:36:05', '2024-03-11 09:36:05'),
+(22, 'Nathanial Bins', 'jack.lubowitz@example.org', '$2y$12$YmsovUdrTEaw6ILEy5cd0utdWmwCZ5.5ldSgjFP1fTETei7MX.AI.', '1974-08-20', '517 Celestine Centers\nPort Salvatore, NJ 77211', '+1-279-940-7519', 1, '2024-03-11 09:36:05', '2024-03-11 09:36:05'),
+(23, 'Prof. Keagan Jerde', 'estrella.hodkiewicz@example.org', '$2y$12$xpnSOekiSRoiA4R/UFlsYec5oF/G.O5y4wxm8VZwVFTWILYYF5cu.', '2006-12-10', '7050 Yesenia Branch Suite 363\nPort Leo, DE 58605-5413', '(917) 568-1354', 1, '2024-03-11 09:36:06', '2024-03-11 09:36:06'),
+(24, 'Ms. Katrina Roberts', 'rosemary59@example.org', '$2y$12$boUfWz.bq0vsOc4El5KNB.T9YbtqBPVSIxGku/ikZQztxffspIFUm', '1992-06-14', '9319 Littel Station\nPort Percival, VT 49275-0332', '740.576.5045', 1, '2024-03-11 09:36:06', '2024-03-11 09:36:06'),
+(25, 'Aurelia Berge', 'berge.virginia@example.com', '$2y$12$t4ejxKCfvtoICxsZTAk4/eOXqROIYAbnsk6kNEjUsB.wKM.f3HlmG', '2015-11-11', '91164 Oberbrunner Parkways\nEast Abdullah, AL 98847-9991', '818-381-1987', 0, '2024-03-11 09:36:06', '2024-03-11 09:36:06'),
+(26, 'Julie West', 'udamore@example.com', '$2y$12$lQJ7g/TW5Cbp9vFYGaVjQurgHPQDWe8pfkrzDW0ve4JGxusk4175u', '1998-01-03', '58228 Jaiden Place Apt. 177\nPort Bertville, FL 76666-1428', '+1 (870) 432-4190', 1, '2024-03-11 09:36:07', '2024-03-11 09:36:07'),
+(27, 'Dr. Bryana Medhurst', 'bulah47@example.org', '$2y$12$p22Mh7Zsw300tWUNX7qmbOo7cTZYvY90AcFSQJr/06bs2l25fi0Rq', '1984-03-05', '483 Dare Port\nMedhurstburgh, IA 84099-1647', '+1-979-452-7321', 0, '2024-03-11 09:36:07', '2024-03-11 09:36:07'),
+(28, 'Emmitt Lind', 'einar.emard@example.net', '$2y$12$j9Uk5RWfTmE6OAWZmL4nJ.tNFznMF2k3erJncN./aDt3RpD.JipAu', '2004-12-25', '53797 Toy Lights Apt. 176\nAlejandrinside, VT 36633-6235', '+12342434002', 0, '2024-03-11 09:36:08', '2024-03-11 09:36:08'),
+(29, 'Ricardo Luettgen', 'metz.johnson@example.org', '$2y$12$/jrDtETCCXV78DKzqkT./uG/4Lle7FL/X6O/fz90wyjZtlHhe6Sva', '1987-04-14', '39683 Dagmar Stravenue\nNew Damionfort, OH 31316-3281', '928.281.6641', 0, '2024-03-11 09:36:08', '2024-03-11 09:36:08'),
+(30, 'Melany Nolan MD', 'wolff.doyle@example.net', '$2y$12$p2VJRdLkGczNfaWu90lGT.EQmkiHCtlhB6eoJ9/2V3hLWHadNBM6C', '1987-05-28', '185 Veronica Land\nEast Malcolmshire, UT 64096-2139', '1-445-607-3874', 0, '2024-03-11 09:36:09', '2024-03-11 09:36:09'),
+(31, 'Trần Trọng Hiến', 'tronghientran18@gmail.com', '$2y$12$Qrif4.vXnraBxREnUddSV.u7TFeCN9..4i1L0K4V2Km6md36hm9Yq', NULL, NULL, NULL, 1, '2024-03-11 09:37:35', '2024-03-11 09:37:35');
 
 -- --------------------------------------------------------
 
@@ -213,6 +224,15 @@ CREATE TABLE `orders` (
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `customer_id`, `name_receiver`, `phone_receiver`, `address_receiver`, `notes`, `total_price`, `status`, `create_at`, `update_at`) VALUES
+(4, 31, 'Trần Trọng Hiến', '+84706802119', 'Nguyễn Văn Linh, Cần Thơ', 'Ship lẹ lên chị ơi', 45998000, 'đã giao', '2024-03-12 17:12:59', '2024-03-12 17:12:59'),
+(5, 31, 'Trần Trọng Hiến', '+84706802119', 'Nguyễn Văn Linh, Cần Thơ', NULL, 15000000, 'đang giao', '2024-03-14 09:11:25', '2024-03-14 09:11:25'),
+(6, 31, 'FLAMES', '03759368926', 'Quận 1, Sài gòn', NULL, 15000000, 'đang chờ', '2024-03-14 10:01:05', '2024-03-14 10:01:05');
+
 -- --------------------------------------------------------
 
 --
@@ -228,6 +248,16 @@ CREATE TABLE `order_details` (
   `create_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm tạo',
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'Thời điểm cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`order_detail_id`, `order_id`, `product_id`, `quantity`, `price`, `create_at`, `update_at`) VALUES
+(4, 4, 5, 2, 17999000, '2024-03-12 17:12:59', '2024-03-12 17:12:59'),
+(5, 4, 8, 1, 10000000, '2024-03-12 17:12:59', '2024-03-12 17:12:59'),
+(6, 5, 10, 2, 7500000, '2024-03-14 09:11:25', '2024-03-14 09:11:25'),
+(7, 6, 2, 1, 15000000, '2024-03-14 10:01:05', '2024-03-14 10:01:05');
 
 -- --------------------------------------------------------
 
@@ -395,13 +425,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `cart_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cart_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `cart_details`
 --
 ALTER TABLE `cart_details`
-  MODIFY `cart_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -419,7 +449,7 @@ ALTER TABLE `conversions`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `customer_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -437,13 +467,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `order_detail_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `products`

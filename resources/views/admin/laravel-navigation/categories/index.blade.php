@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 @if(session('success'))
-                <div class="m-3  alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
+                <div class="m-3 alert alert-success alert-dismissible fade show" id="alert-success" role="alert">
                     <span class="alert-text text-white">
                         {{ session('success') }}</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
@@ -23,9 +23,17 @@
                     </button>
                 </div>
                 @endif
+                <div class="ms-auto me-4 mt-3">
+                    <form action="{{ url('admin/categories-management-search') }}" method="GET">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" class="form-control" style="width: 250px;" placeholder="Tên danh mục" name="search" value="{{ request()->search }}" aria-describedby="button-search-category">
+                            <button class="btn btn-outline-secondary mb-0" type="submit" id="button-search-category"><i class="ni ni-send"></i></button>
+                        </div>
+                    </form>
+                </div>
                 <div class="card-body px-0 pt-0 pb-2">
                     <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
+                        <table class="table align-items-center mb-0" id="categoriesTable">
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">

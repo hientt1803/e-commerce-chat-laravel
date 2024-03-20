@@ -35,8 +35,26 @@
                             <div>
                                 <label for="email">Email</label>
                                 <div class="">
-                                    <input id="email" name="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                                    <input id="email" name="email" type="email" value="{{session('customer')?session('customer')->email:''}}" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                                     @error('email')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div>
+                                <label for="password">Mật khẩu mới</label>
+                                <div class="">
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                                    @error('password')
+                                    <p class="text-danger text-xs mt-2">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div>
+                                <label for="password_confirmation">Xác nhận mật khẩu</label>
+                                <div class="">
+                                    <input id="password-confirmation" name="password_confirmation" type="password" class="form-control" placeholder="Password-confirmation" aria-label="Password-confirmation" aria-describedby="Password-addon">
+                                    @error('password')
                                     <p class="text-danger text-xs mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>

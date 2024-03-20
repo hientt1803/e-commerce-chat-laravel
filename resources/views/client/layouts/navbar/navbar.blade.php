@@ -32,11 +32,12 @@
                             {{session('customer')->customer_name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item" href="/user/profile">Thông tin cá nhân</a></li>
-                            <li><a class="dropdown-item" href="/user/order-history">Lịch sử đặt hàng</a></li>
-                            <li><a class="dropdown-item" href="/cart">Giỏ hàng</a></li>
+                            <li><a class="dropdown-item" href="/user/profile"><i class="fa fa-user-o mr-1" aria-hidden="true"></i>Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="/user/order-history"><i class="fa fa-history mr-1" aria-hidden="true"></i>Lịch sử đặt hàng</a></li>
+                            <li><a class="dropdown-item" href="/cart"><span class="icon_bag_alt mr-1"></span>Giỏ hàng</a></li>
                             <hr>
-                            <li><a class="dropdown-item" href="/logout">Đăng xuất</a></li>
+                            <li><a class="dropdown-item" href="/login/forgot-password"><i class="fa fa-unlock-alt mr-1" aria-hidden="true"></i>Quên mật khẩu?</a></li>
+                            <li><a class="dropdown-item text-danger" href="/logout"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>Đăng xuất</a></li>
                         </div>
                     </div>
                     @else

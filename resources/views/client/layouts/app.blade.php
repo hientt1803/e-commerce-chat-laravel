@@ -82,6 +82,7 @@
     </div>
     <!-- Offcanvas Menu End -->
 
+    <!-- Toast message Begin -->
     @if(session('toastMsg'))
     <div id="snackbar" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true">
         <div class="toast-header bg-transparent d-flex justify-content-between">
@@ -103,6 +104,7 @@
         myFunction();
     </script>
     @endif
+    <!-- Toast message End -->
 
     @guest
     @yield('guest')
@@ -120,6 +122,76 @@
         </div>
     </form>
     <!-- Search End -->
+
+    <!-- Help button Begin -->
+    <!-- <div class="help-area">
+        <button type="button" class="site-btn rounded-sm" id="helpButton" style="font-size: 22px;" onclick="toggleHelp()">
+            <i class="fa fa-columns mr-2" aria-hidden="true"></i>
+            CHAT
+        </button>
+        <div class="card card-help" id="helpCard">
+            <div class="card-help-content" id="helpCardContent">
+                <div class="w-100 d-flex justify-content-between align-items-center">
+                    <span class="text-dark font-weight-bold fs-5 p-2"><span class="ml-1 text-danger">CHAT</span></span>
+                    <button class="btn bg-transparent text-dark" onclick="toggleHelp()"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i></button>
+                </div>
+                <div class="card">
+                    <div class="card-body border-1" style="height: 500px; background-color: #f1f1f1;">
+                    
+                        <div class="d-flex flex-row mb-3">
+                            <div class="p-2 bg-light rounded">
+                                <p class="mb-0">Hi</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-row-reverse mb-3">
+                            <div class="p-2 bg-primary text-white rounded">
+                                <p class="mb-0">hi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="{{url('/client/message')}}" method="POST">
+                        <div class="card-footer d-flex justify-content-between">
+                            <input type="text" class="form-input w-100" placeholder="Nhập nội dung tin nhắn" name="content" required>
+                            <button type="submit" class="ml-1 site-btn rounded-sm"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Help button End -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css"> -->
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    <script>
+        var botmanWidget = {
+            aboutText: 'Botman',
+            introMessage: "Xin chào! Tôi có thể giúp gì cho bạn?"
+        };
+    </script>
+
+    <script>
+        function toggleHelp() {
+            var helpCard = document.getElementById("helpCard");
+            var helpCardContent = document.getElementById("helpCardContent");
+
+            // Toggle the 'expanded' class on the card
+            helpCard.classList.toggle("expanded");
+
+            // Hide or show the button based on the card's visibility
+            var helpButton = document.getElementById("helpButton");
+            if (helpCard.classList.contains("expanded")) {
+                helpButton.style.display = "none";
+                helpCardContent.style.display = "block";
+            } else {
+                helpButton.style.display = "block";
+                helpCardContent.style.display = "none";
+            }
+        }
+    </script>
+    <!-- Help button Begin -->
+
 
     <!-- Js Plugins -->
     <script src=" {{asset('assets/client/js/jquery-3.3.1.min.js')}}"></script>
