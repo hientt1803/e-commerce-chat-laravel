@@ -9,6 +9,7 @@ use App\Models\Products;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -38,7 +39,25 @@ class DashboardController extends Controller
             ->orderBy('date')
             ->get();
 
-        return view('admin.dashboard', compact('revenueToday', 'totalUsers', 'totalCustomers', 'totalProducts', 'filtered_data'));
+        // Top 10 product
+        $bestSeller = Products::select('products.*', DB::raw('SUM(order_details.quantity) as total_quantity'))
+            ->join('order_details', 'order_details.product_id', '=', 'products.product_id')
+            ->join('orders', 'orders.order_id', '=', 'order_details.order_id')
+            // Bạn có thể thêm điều kiện cho orders nếu cần, ví dụ: ->where('orders.status', 'completed')
+            ->groupBy(['products.product_id', 'products.cat_id', 'products.product_name', 'products.price', 'products.quantity', 'products.description', 'products.image', 'products.status', 'products.create_at', 'products.update_at'])
+            ->orderBy('total_quantity', 'desc')
+            ->limit(6)
+            ->get();
+
+        // dd($bestSeller);
+
+        // Transaction
+
+        $orderToday = Order::orderByDesc('create_at')->with('orderDetail')->limit(6)->get();
+
+        // dd($orderToday);
+
+        return view('admin.dashboard', compact('revenueToday', 'totalUsers', 'totalCustomers', 'totalProducts', 'filtered_data', 'bestSeller','orderToday'));
     }
 
     public function filterStatistical(Request $request)
