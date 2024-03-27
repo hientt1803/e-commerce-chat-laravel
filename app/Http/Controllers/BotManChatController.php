@@ -28,7 +28,7 @@ class BotManChatController extends Controller
             } else if (strtolower($message) == 'shop') {
                 $botman->reply('Bạn có thể xem chi tiết sản phẩm tại trang Shop bằng cách truy cập vào đường link sau: [http://127.0.0.1:8000/shop]');
             } else if (strtolower($message) == 'contact') {
-                $botman->reply('Bạn có thể xem chi tiết liên hệ tại trang Shop bằng cách truy cập vào đường link sau: [http://127.0.0.1:8000/contact]');
+                $botman->reply('Bạn có thể xem chi tiết liên hệ tại trang liên hệ bằng cách truy cập vào đường link sau: [http://127.0.0.1:8000/contact]');
             } else if (strtolower($message) == 'cart') {
                 $botman->reply('Bạn có thể xem chi tiết trang giỏ hàng bằng cách truy cập vào đường link sau: [http://127.0.0.1:8000/cart]');
             } else {

@@ -17,7 +17,7 @@ class ProductsController extends Controller
 
         // $data['products'] = Products::orderBy('status', 'desc')
         //                         ->orderBy('product_id', 'desc')
-        //                         ->with(['categories' => function ($query) {
+        //                          ->with(['categories' => function ($query) {
         //                             $query->where('status', 1);
         //                         }])
         //                         ->paginate(15);

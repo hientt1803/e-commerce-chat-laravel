@@ -53,6 +53,7 @@
           <span class="nav-link-text ms-1">Thông tin cá nhân</span>
         </a>
       </li>
+      @if(auth()->user()->role == 'admin')
       <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('admin/users-management') ? 'active' : '') }}" href="{{ url('admin/users-management') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -93,6 +94,16 @@
           <span class="nav-link-text ms-1">Quản lý đơn hàng</span>
         </a>
       </li>
+      @else
+      <li class="nav-item pb-2">
+        <a class="nav-link {{ (Request::is('admin/orders-management') ? 'active' : '') }}" href="{{ url('admin/orders-management') }}">
+          <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i style="font-size: 1rem;" class="fas fa-dolly-flatbed ps-2 pe-2 text-center text-dark {{ (Request::is('admin/orders-management') ? 'text-white' : 'text-dark') }} " aria-hidden="true"></i>
+          </div>
+          <span class="nav-link-text ms-1">Quản lý đơn hàng</span>
+        </a>
+      </li>
+      @endif
       <!-- <li class="nav-item pb-2">
         <a class="nav-link {{ (Request::is('admin/conversation-management') ? 'active' : '') }}" href="{{ url('admin/conversation-management') }}">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
