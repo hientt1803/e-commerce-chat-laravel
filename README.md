@@ -1,20 +1,20 @@
-How to setup application. 
+How to setup and run application. 
 
-## Recommended using git batch
+## Recommend using git batch
 ## Php version at least 8.2
 ## Laravel version 10.
 
+## Must do before run application
+    - Run apache and php admin in adminstrator mode
+
 ### Do this one 👀👀 
     - Open terminal
-    - composer global require laravel/installer
-    - composer install
+    - enter to terminal: composer global require laravel/installer
+    - enter to terminal: composer install
     - create .env file => copy data from .env.example to .env
-    - php artisan key:generate
-    - php artisan migrate
-    - php artisan db:seed (for a example login => use .sql file for better data).
-    - php artisan storage:link
-    - run application: php artisan serve
-    - login with a default account and password. 
-
-### Must do before run application
-    - Run apache and phpadmin in adminstrator mode
+    - create a database name e_commerce_app in php admin and import file .sql 
+    - enter to terminal: php artisan key:generate
+    - enter to terminal: php artisan migrate
+    - enter to terminal: php artisan storage:link
+    - enter to terminal(Run application): php artisan serve
+    - Access to php admin to see username, all role user and customer got password 12345
